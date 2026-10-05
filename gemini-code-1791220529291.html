@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catering C.H. Pray S.A.S. | Alimentación Institucional y Catering B2B</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --surface-subtle: #F1F3F5;
+      --border: #E5E7EB;
+      --border-focus: #C8963E;
+      --text-main: #111827;
+      --text-muted: #4B5563;
+      --text-light: #9CA3AF;
+      --crimson: #8B1E1E;
+      --crimson-hover: #731818;
+      --crimson-subtle: #FDF2F2;
+      --gold: #C8963E;
+      --gold-subtle: #FDF8ED;
+      --dark-card: #18191D;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
+      --spring-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --smooth-easing: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    /* BARRA SUPERIOR */
+    .top-bar {
+      background: #111827;
+      color: #D1D5DB;
+      font-size: 13px;
+      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1F2937;
+    }
+
+    .top-bar-tags {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(200, 150, 62, 0.15);
+      color: #E5C378;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #E5C378;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo-svg {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    nav a:hover {
+      color: var(--crimson);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* BOTONES */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: transform 0.1s ease-out, background-color 0.15s ease, border-color 0.15s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primary {
+      background: var(--crimson);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(139, 30, 30, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--crimson-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text-main);
+      border-color: var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-subtle);
+      border-color: #D1D5DB;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #FFFFFF;
+    }
+
+    .btn-gold:hover {
+      background: #B68430;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 24px 48px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--crimson-subtle);
+      color: var(--crimson);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.18;
+      margin-bottom: 20px;
+      color: #0F172A;
+    }
+
+    .hero h1 span {
+      color: var(--crimson);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .trust-item h4 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--crimson);
+    }
+
+    .trust-item p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+      line-height: 1.3;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #059669;
+    }
+
+    .dot-badge::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #10B981;
+      border-radius: 50%;
+    }
+
+    .badge-gold-outline {
+      border: 1px solid var(--gold);
+      color: #92641A;
+      background: var(--gold-subtle);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--surface-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .info-row span:first-child {
+      color: var(--text-muted);
+    }
+
+    .info-row span:last-child {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* PESTAÑAS (TABS) */
+    .tabs-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+
+    .section-title-wrap h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .section-title-wrap p {
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .tab-nav-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+
+    .tab-bar {
+      position: relative;
+      display: inline-flex;
+      background: #E5E7EB;
+      padding: 4px;
+      border-radius: 12px;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      position: relative;
+      z-index: 2;
+      border: none;
+      background: transparent;
+      padding: 10px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: color 0.15s ease;
+      user-select: none;
+    }
+
+    .tab-btn.active {
+      color: var(--text-main);
+    }
+
+    .tab-indicator {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      bottom: 4px;
+      background: var(--surface);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.28s var(--spring-easing), width 0.28s var(--spring-easing);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: scale(0.985);
+      transition: opacity 0.22s var(--smooth-easing), transform 0.25s var(--smooth-easing);
+    }
+
+    .tab-panel.active {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .panel-content h3 {
+      font-size: 26px;
+      margin-bottom: 12px;
+      color: #0F172A;
+    }
+
+    .panel-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-subtle);
+      border: 1px solid rgba(200, 150, 62, 0.3);
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .panel-content p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .specs-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .specs-list li svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--crimson);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .panel-display-card {
+      background: var(--surface-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .panel-display-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .diet-badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .diet-tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .diet-tag.highlight {
+      border-color: var(--gold);
+      background: var(--gold-subtle);
+      color: #87570F;
+    }
+
+    /* SECCION ESPECIFICA: PROTEINAS AL VACIO */
+    .proteins-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .proteins-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .catalog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .catalog-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .catalog-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--surface-subtle);
+      border-bottom: 2px solid var(--border);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .catalog-table td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calc-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .calc-slider-wrap {
+      margin-bottom: 20px;
+    }
+
+    .calc-slider-wrap label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .calc-slider {
+      width: 100%;
+      accent-color: var(--crimson);
+      cursor: pointer;
+    }
+
+    .calc-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .calc-metric {
+      background: var(--surface-subtle);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+
+    .calc-metric-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--crimson);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .calc-metric-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* SECCION ESPECIFICA: CONTACTO Y SEDE */
+    .contact-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-info-pane {
+      background: #111827;
+      color: #FFFFFF;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-info-pane h3 {
+      color: #FFFFFF;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .contact-info-pane p {
+      color: #9CA3AF;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .contact-details-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .contact-item-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: #1F2937;
+      color: #C8963E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .contact-item h5 {
+      color: #FFFFFF;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .contact-item p {
+      color: #9CA3AF;
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    .contact-form-pane {
+      padding: 48px;
+    }
+
+    .contact-form-pane h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-pane p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* MATRIZ DE INOCUIDAD */
+    .trust-matrix {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .matrix-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .matrix-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--crimson-subtle);
+      color: var(--crimson);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .matrix-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .matrix-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #9CA3AF;
+      padding: 60px 24px 30px;
+      border-top: 1px solid #1F2937;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid #1F2937;
+    }
+
+    .footer-col h5 {
+      color: #FFFFFF;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: #9CA3AF;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #FFFFFF;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 24px auto 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #6B7280;
+    }
+
+    /* FORMULARIOS Y MODALES */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      background: var(--surface);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(200, 150, 62, 0.18);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(17, 24, 39, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s var(--smooth-easing);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      background: var(--surface);
+      width: 100%;
+      max-width: 580px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      padding: 32px;
+      position: relative;
+      transform: scale(0.96);
+      transition: transform 0.22s var(--spring-easing);
+    }
+
+    .modal-overlay.active .modal-window {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--surface-subtle);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .step-indicator-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .step-tick {
+      height: 4px;
+      flex: 1;
+      background: #E5E7EB;
+      border-radius: 2px;
+    }
+
+    .step-tick.active {
+      background: var(--crimson);
+    }
+
+    .wizard-step {
+      display: none;
+    }
+
+    .wizard-step.active {
+      display: block;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .selectable-card {
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+      user-select: none;
+    }
+
+    .selectable-card.selected {
+      border-color: var(--crimson);
+      background: var(--crimson-subtle);
+    }
+
+    @media (max-width: 900px) {
+      .hero, .proteins-grid, .contact-layout, .tab-panel.active {
+        grid-template-columns: 1fr;
+      }
+      .trust-strip, .matrix-grid, .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE CONFIANZA -->
+  <div class="top-bar">
+    <div class="top-bar-tags">
+      <span class="badge-pill">NIT 901.815.422-7</span>
+      <span>Bogotá D.C. & Municipios de la Sabana</span>
+    </div>
+    <div style="font-size: 12px;">
+      Garantía de Inocuidad y Prescripción Nutricional
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="brand-wrap">
+      <svg class="brand-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#0C0D0E" stroke="#8B1E1E" stroke-width="3"/>
+        <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#1F2430" stroke-width="2" fill="none"/>
+        <rect x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#8B1E1E" stroke-width="1.5" fill="none"/>
+        <path d="M48 78 L32 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#C8963E"/>
+        <path d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#C8963E"/>
+        <path d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#C8963E"/>
+        <path d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#C8963E"/>
+        <path d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#C8963E"/>
+        <path d="M52 78 L68 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#C8963E"/>
+        <path d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#C8963E"/>
+        <path d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#C8963E"/>
+        <path d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#C8963E"/>
+        <path d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#C8963E"/>
+      </svg>
+      <div>
+        <span class="brand-title">C.H. PRAY</span>
+        <span class="brand-sub">CATERING C.H. PRAY S.A.S.</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#soluciones">Portafolio</a>
+      <a href="#vacío">Proteínas al Vacío</a>
+      <a href="#inocuidad">Inocuidad & BPM</a>
+      <a href="#contacto">Contacto & Sede</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Solicitar Muestra</button>
+      <button class="btn btn-primary" onclick="openQuoteModal('cotizacion')">Cotizar Servicio</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="hero-tagline">Alimentación Institucional & Catering B2B</div>
+        <h1>Donde la <span>inocuidad</span> y el rigor de cada minuta no se negocian.</h1>
+        <p>
+          Menús hospitalarios con aval nutricional, casinos corporativos y cortes de proteína envasados al vacío para maximizar el rendimiento operativo de su cocina.
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn btn-primary" style="padding: 12px 24px; font-size: 15px;" onclick="openQuoteModal('cotizacion')">
+            Solicitar Cotización Formal
+          </button>
+          <a class="btn btn-secondary" style="padding: 12px 20px; font-size: 15px;" href="https://wa.me/573000000000?text=Hola,%20solicito%20el%20dossier%20comercial%20de%20CH%20Pray" target="_blank">
+            WhatsApp Directo
+          </a>
+        </div>
+
+        <div class="trust-strip">
+          <div class="trust-item">
+            <h4>BPM</h4>
+            <p>Protocolos de manipulación e inocuidad estricta</p>
+          </div>
+          <div class="trust-item">
+            <h4>5 Dietas</h4>
+            <p>Prescripción clínica especializada</p>
+          </div>
+          <div class="trust-item">
+            <h4>&lt; 24h</h4>
+            <p>Tiempo de entrega de propuesta formal</p>
+          </div>
+          <div class="trust-item">
+            <h4>Bogotá</h4>
+            <p>Sede propia y despacho termo-aislado</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="dot-badge">Planta Operativa Activa</span>
+          <span class="badge-gold-outline">Lote Certificado</span>
+        </div>
+        <div class="info-row">
+          <span>Razón Social Unificada</span>
+          <span>Catering C.H. Pray S.A.S.</span>
+        </div>
+        <div class="info-row">
+          <span>Control de Temperatura</span>
+          <span style="color: #059669;">Caliente &gt; 65°C / Cadena &lt; 4°C</span>
+        </div>
+        <div class="info-row">
+          <span>Rotulado Individual</span>
+          <span>Cama, Paciente, Prescripción</span>
+        </div>
+        <div class="info-row">
+          <span>Ubicación Planta</span>
+          <span>Cra. 24D #3-27 Sur, Bogotá</span>
+        </div>
+        <button class="btn btn-gold" style="width: 100%; margin-top: 10px;" onclick="openQuoteModal('degustacion')">
+          Agendar Degustación para Comité Técnico
+        </button>
+      </div>
+    </section>
+
+    <!-- PORTAFOLIO EN PESTAÑAS (TABS) -->
+    <section class="tabs-section" id="soluciones">
+      <div class="section-title-wrap">
+        <h2>Portafolio Especializado por Sector</h2>
+        <p>Seleccione su sector para revisar la ficha técnica de servicio adaptada a sus requerimientos de compra.</p>
+      </div>
+
+      <div class="tab-nav-wrapper">
+        <div class="tab-bar" id="tabBar">
+          <div class="tab-indicator" id="tabIndicator"></div>
+          <button class="tab-btn active" data-index="0" onclick="switchTab(0)">Hospitales & Clínicas</button>
+          <button class="tab-btn" data-index="1" onclick="switchTab(1)">Empresas & Casinos</button>
+          <button class="tab-btn" data-index="2" onclick="switchTab(2)">Cortes al Vacío</button>
+        </div>
+      </div>
+
+      <div class="tab-panels-container">
+        <!-- PANEL CLÍNICO -->
+        <div class="tab-panel active" id="panel-0">
+          <div class="panel-content">
+            <span class="panel-badge">Régimen Sanitario Estricto</span>
+            <h3>Alimentación Hospitalaria con Trazabilidad Térmica</h3>
+            <p>
+              Diseñamos menús clínicos con prescripción médica rigurosa. Cada bandeja llega rotulada de forma individual con la identidad del paciente, gramajes verificados y transporte termo-aislado que asegura temperaturas seguras.
+            </p>
+            <ul class="specs-list">
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Rotulación individual con cama, paciente, dieta y hora exacta de preparación.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Monitoreo de temperatura en recepción (garantía de calor &gt;65°C o refrigeración &lt;4°C).</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Acompañamiento y calibración de minutas con nutricionista profesional.</span>
+              </li>
+            </ul>
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-primary" onclick="openQuoteModal('clinico')">Cotizar Línea Hospitalaria</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Coordinar Degustación sin Costo</button>
+            </div>
+          </div>
+
+          <div class="panel-display-card">
+            <div>
+              <div class="panel-display-header">Prescripciones Clínicas Cubiertas</div>
+              <div class="diet-badge-group">
+                <span class="diet-tag highlight">Dieta Normal Balanceada</span>
+                <span class="diet-tag">Blanda / Semiblanda</span>
+                <span class="diet-tag">Hiposódica Estricta</span>
+                <span class="diet-tag">Hiperproteica</span>
+                <span class="diet-tag">Líquida Clara & Completa</span>
+              </div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
+              <strong style="color: var(--crimson);">Garantía Documental:</strong> Planillas de control de lotes, fichas técnicas de gramaje y certificados sanitarios al día.
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL CORPORATIVO -->
+        <div class="tab-panel" id="panel-1">
+          <div class="panel-content">
+            <span class="panel-badge">Bienestar & Productividad</span>
+            <h3>Catering Corporativo, Almuerzos Ejecutivos y Refrigerios</h3>
+            <p>
+              Soluciones gastronómicas para empresas. Menús balanceados en calorías y sodio servidos puntualmente en sus instalaciones o en empaques biodegradables.
+            </p>
+            <ul class="specs-list">
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Ciclos de menú mensual sin repetición para evitar la fatiga alimentaria.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Refrigerios corporativos saludables: wraps artesanales, parfaits y jugos naturales.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Asados al carbón y eventos corporativos de fin de año al aire libre.</span>
+              </li>
+            </ul>
+            <div style="display: flex; gap: 12px;">
+              <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Cotizar Casino Corporativo</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('evento')">Cotizar Evento / Asado</button>
+            </div>
+          </div>
+
+          <div class="panel-display-card">
+            <div>
+              <div class="panel-display-header">Modalidades de Suministro</div>
+              <div class="diet-badge-group">
+                <span class="diet-tag highlight">Almuerzo Caliente en Sitio</span>
+                <span class="diet-tag">Línea de Autoservicio / Casino</span>
+                <span class="diet-tag">Refrigerio Individual Sellado</span>
+                <span class="diet-tag">Estaciones de Café & Breaks</span>
+              </div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
+              <strong style="color: var(--crimson);">Puntualidad Certificada:</strong> Despacho logístico propio en Bogotá con entrega garantizada antes de las 11:30 AM.
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL CORTES AL VACÍO -->
+        <div class="tab-panel" id="panel-2">
+          <div class="panel-content">
+            <span class="panel-badge">Optimización de Cocina B2B</span>
+            <h3>Proteínas Porcionadas al Vacío para Restaurantes</h3>
+            <p>
+              Disminuya los tiempos de preparación y controle con precisión el costo por porción. Proveemos cortes cárnicos seleccionados, porcionados en gramajes exactos (180g, 220g, 250g) y empacados al vacío termoencogible.
+            </p>
+            <ul class="specs-list">
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Cero merma por limpieza o desposte dentro de su cocina.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Mayor vida útil en refrigeración sin quemadura por frío.</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>
+                <span>Control exacto del costo estándar por plato en su inventario.</span>
+              </li>
+            </ul>
+            <div style="display: flex; gap: 12px;">
+              <a href="#vacío" class="btn btn-primary">Ver Catálogo Completo y Simulador</a>
+              <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir Muestra</button>
+            </div>
+          </div>
+
+          <div class="panel-display-card">
+            <div class="panel-display-header">Cortes Estandarizados</div>
+            <div class="diet-badge-group">
+              <span class="diet-tag highlight">Lomo Fino Res (220g)</span>
+              <span class="diet-tag">Punta de Anca (250g)</span>
+              <span class="diet-tag">Pechuga Deshuesada (200g)</span>
+              <span class="diet-tag">Bondiola Cerdo (200g)</span>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
+              <strong style="color: var(--crimson);">Entrega en Frío:</strong> Despacho programado con registro de temperatura en transporte.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APARTADO ESPECÍFICO 1: PROTEÍNAS AL VACÍO -->
+    <section class="proteins-section" id="vacío">
+      <div class="section-title-wrap">
+        <span class="badge-pill" style="margin-bottom: 8px;">Línea Restaurantes & Horeca</span>
+        <h2>Proteínas al Vacío: Estandarización y Cero Mermas</h2>
+        <p>Solución diseñada para chefs ejecutivos y jefes de compras que buscan controlar sus costos por porción y eliminar la mano de obra improductiva en cocina.</p>
+      </div>
+
+      <div class="proteins-grid">
+        <!-- Catálogo de Cortes -->
+        <div class="catalog-card">
+          <h3 style="font-size: 20px; margin-bottom: 6px;">Catálogo Mayorista de Cortes Seleccionados</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+            Cortes limpios, sin tendones ni grasa excesiva, empacados en bolsas de alto vacío de 7 capas.
+          </p>
+
+          <table class="catalog-table">
+            <thead>
+              <tr>
+                <th>Corte</th>
+                <th>Gramajes Estandarizados</th>
+                <th>Vida Útil</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Lomo Fino de Res</strong></td>
+                <td>180g / 220g / 250g</td>
+                <td>21 días (0-4°C)</td>
+              </tr>
+              <tr>
+                <td><strong>Punta de Anca Madurada</strong></td>
+                <td>200g / 250g / 300g</td>
+                <td>28 días (0-4°C)</td>
+              </tr>
+              <tr>
+                <td><strong>Pechuga de Pollo Limpia</strong></td>
+                <td>160g / 200g / 220g</td>
+                <td>14 días (0-4°C)</td>
+              </tr>
+              <tr>
+                <td><strong>Bondiola / Lomo Cerdo</strong></td>
+                <td>180g / 220g</td>
+                <td>21 días (0-4°C)</td>
+              </tr>
+              <tr>
+                <td><strong>Carne para Hamburguesa</strong></td>
+                <td>150g / 180g (Blend artesanal)</td>
+                <td>Conge: 90 días</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button class="btn btn-primary" style="flex: 1;" onclick="openQuoteModal('vacío')">Solicitar Lista de Precios B2B</button>
+            <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir Muestra de Prueba</button>
+          </div>
+        </div>
+
+        <!-- Calculadora de Rendimiento y Ahorro -->
+        <div class="calc-box">
+          <h3 style="font-size: 20px; margin-bottom: 6px;">Simulador de Ahorro y Reducción de Merma</h3>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+            Compare el costo oculto de procesar carne en su cocina versus recibir la porción lista para la plancha:
+          </p>
+
+          <div class="calc-slider-wrap">
+            <label>
+              <span>Consumo semanal de proteína:</span>
+              <span id="kgLabel" style="color: var(--crimson); font-size: 16px;">80 kg</span>
+            </label>
+            <input type="range" min="20" max="400" step="10" value="80" class="calc-slider" id="kgSlider" oninput="calculateSavings(this.value)">
+          </div>
+
+          <div class="calc-results">
+            <div class="calc-metric">
+              <div class="calc-metric-num" id="mermaKg">12.0 kg</div>
+              <div class="calc-metric-lbl">Merma estimada ahorrada / semana</div>
+            </div>
+            <div class="calc-metric">
+              <div class="calc-metric-num" id="horasAhorro">16 h</div>
+              <div class="calc-metric-lbl">Horas de mise en place liberadas</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 20px; padding: 14px; background: var(--surface-subtle); border-radius: 8px; font-size: 13px; line-height: 1.5;">
+            <strong>Ventaja Financiera:</strong> Al comprar porción neta exacta, el costo de cada plato en su sistema POS coincide 100% con la salida del almacén, eliminando pérdidas por sobreporcionado de los cocineros.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INOCUIDAD & PROTOCOLOS -->
+    <section class="trust-matrix" id="inocuidad">
+      <div class="section-title-wrap">
+        <h2>Rigor Sanitario & Protocolos Verificables</h2>
+        <p>Documentación técnica y operativa lista para comités de compras y auditorías de salud.</p>
+      </div>
+
+      <div class="matrix-grid">
+        <div class="matrix-card">
+          <div class="matrix-icon">BPM</div>
+          <h4>Buenas Prácticas de Manufactura</h4>
+          <p>Instalaciones, utensilios y procesos certificados bajo lineamientos de la Secretaría de Salud y normatividad sanitaria nacional.</p>
+        </div>
+        <div class="matrix-card">
+          <div class="matrix-icon">65°</div>
+          <h4>Cadena Térmica Blindada</h4>
+          <p>Cajas isotérmicas de grado alimenticio y termómetros calibrados para garantizar que el alimento caliente llegue caliente y el frío permanezca intacto.</p>
+        </div>
+        <div class="matrix-card">
+          <div class="matrix-icon">NIT</div>
+          <h4>Transparencia Legal y Contractual</h4>
+          <p>Catering C.H. Pray S.A.S. (NIT 901.815.422-7) con Registro Mercantil al día, facturación electrónica y cumplimiento de la Ley 1581 de protección de datos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- APARTADO ESPECÍFICO 2: CONTACTO Y SEDE OPERATIVA -->
+    <section class="contact-section" id="contacto">
+      <div class="section-title-wrap">
+        <span class="badge-pill" style="margin-bottom: 8px;">Atención Directa & Visitas</span>
+        <h2>Contacto Comercial & Sede de Producción</h2>
+        <p>Estamos ubicados estratégicamente en Bogotá para atender rutas institucionales con puntualidad.</p>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Panel Izquierdo: Información y Ubicación -->
+        <div class="contact-info-pane">
+          <div>
+            <h3>Planta de Producción</h3>
+            <p>
+              Nuestra cocina central cuenta con áreas separadas de desinfección, cocción en caliente, ensamblado frío y zona de despacho termo-aislado.
+            </p>
+
+            <div class="contact-details-list">
+              <div class="contact-item">
+                <div class="contact-item-icon">📍</div>
+                <div>
+                  <h5>Dirección de la Planta</h5>
+                  <p>Cra. 24D #3-27 Sur, Bogotá D.C., Colombia</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">🕒</div>
+                <div>
+                  <h5>Horario Operativo y Despachos</h5>
+                  <p>Lunes a Sábado: 5:00 AM – 6:00 PM</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">📞</div>
+                <div>
+                  <h5>Línea Directa Comercial</h5>
+                  <p>+57 (601) 000-0000 | Celular: 310 000 0000</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">✉️</div>
+                <div>
+                  <h5>Correo Institucional</h5>
+                  <p>comercial@chpray.com / gerencia@chpray.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: rgba(255,255,255,0.06); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 13px;">
+            <strong style="color: #C8963E;">Visitas de Auditoría:</strong> Coordinamos visitas guiadas para jefes de compras y comités de nutrición interesados en verificar nuestras instalaciones y registros sanitarios.
+          </div>
+        </div>
+
+        <!-- Panel Derecho: Formulario Directo -->
+        <div class="contact-form-pane">
+          <h3>Solicitud de Propuesta o Contacto</h3>
+          <p>Diligencie el formulario y reciba respuesta de nuestro equipo comercial en menos de 24 horas hábiles.</p>
+
+          <form onsubmit="handleDirectContact(event)">
+            <div class="form-group">
+              <label>Nombre y Cargo:</label>
+              <input type="text" class="form-input" id="dirName" placeholder="Ej. Dra. Marcela Reyes - Directora Médica / Compras" required>
+            </div>
+
+            <div class="form-group">
+              <label>Empresa, Clínica o Restaurante:</label>
+              <input type="text" class="form-input" id="dirCompany" placeholder="Ej. Hospital Universitario / Grupo Gastronómico" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group">
+                <label>Correo Electrónico:</label>
+                <input type="email" class="form-input" id="dirEmail" placeholder="contacto@institucion.com" required>
+              </div>
+              <div class="form-group">
+                <label>Teléfono de Contacto:</label>
+                <input type="tel" class="form-input" id="dirPhone" placeholder="315 000 0000" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Servicio de Interés:</label>
+              <select class="form-select" id="dirService">
+                <option value="hospitalario">Alimentación Clínica & Hospitalaria (Dietas)</option>
+                <option value="corporativo">Catering & Casinos para Empresas</option>
+                <option value="vacio">Proteínas Porcionadas al Vacío para Restaurantes</option>
+                <option value="asados">Eventos Corporativos & Asados</option>
+                <option value="auditoria">Deseo agendar una visita a la planta</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Detalles del Requerimiento:</label>
+              <textarea class="form-textarea" id="dirMessage" placeholder="Describa raciones requeridas, ubicación del servicio o inquietudes específicas..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 15px;">
+              Enviar Requerimiento a Gerencia Comercial
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE COTIZACIÓN EN 3 PASOS -->
+  <div class="modal-overlay" id="quoteModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-window">
+      <button class="modal-close-btn" onclick="closeQuoteModal()">✕</button>
+      
+      <div class="step-indicator-bar">
+        <div class="step-tick active" id="tick-1"></div>
+        <div class="step-tick" id="tick-2"></div>
+        <div class="step-tick" id="tick-3"></div>
+      </div>
+
+      <!-- PASO 1 -->
+      <div class="wizard-step active" id="step-1">
+        <h3 style="font-size: 20px; margin-bottom: 6px;">¿Qué tipo de solución requiere?</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Seleccione la línea correspondiente para asignarle un asesor técnico.</p>
+        
+        <div class="option-grid" style="margin-bottom: 24px;">
+          <div class="selectable-card selected" onclick="selectService(this, 'Hospitalario')">
+            <h5>Línea Hospitalaria</h5>
+            <p>Clínicas, IPS, centros de salud</p>
+          </div>
+          <div class="selectable-card" onclick="selectService(this, 'Corporativo')">
+            <h5>Casino Empresarial</h5>
+            <p>Almuerzos y refrigerios diarios</p>
+          </div>
+          <div class="selectable-card" onclick="selectService(this, 'Evento')">
+            <h5>Eventos y Asados</h5>
+            <p>Jornadas al aire libre y reuniones</p>
+          </div>
+          <div class="selectable-card" onclick="selectService(this, 'Proteínas')">
+            <h5>Proteínas al Vacío</h5>
+            <p>Cortes porcionados para restaurantes</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%;" onclick="goToStep(2)">Continuar al siguiente paso →</button>
+      </div>
+
+      <!-- PASO 2 -->
+      <div class="wizard-step" id="step-2">
+        <h3 style="font-size: 20px; margin-bottom: 6px;">Alcance y Volumen Estimado</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Verificamos la capacidad operativa diaria requerida.</p>
+
+        <div class="form-group">
+          <label>Raciones aproximadas / personas por día:</label>
+          <select class="form-select" id="quoteVolume">
+            <option value="20-50">20 a 50 raciones</option>
+            <option value="50-150" selected>50 a 150 raciones</option>
+            <option value="150-500">150 a 500 raciones</option>
+            <option value="500+">Más de 500 raciones diarias</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Modalidad de contratación:</label>
+          <select class="form-select" id="quoteFrequency">
+            <option value="contrato">Contrato recurrente mensual</option>
+            <option value="evento">Evento o fecha específica</option>
+            <option value="muestra">Deseo coordinar primero una muestra/degustación</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 24px;">
+          <button class="btn btn-secondary" style="flex: 1;" onclick="goToStep(1)">← Atrás</button>
+          <button class="btn btn-primary" style="flex: 2;" onclick="goToStep(3)">Continuar a datos de contacto →</button>
+        </div>
+      </div>
+
+      <!-- PASO 3 -->
+      <div class="wizard-step" id="step-3">
+        <h3 style="font-size: 20px; margin-bottom: 6px;">¿A dónde enviamos la propuesta?</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">El equipo comercial preparará el dossier y la cotización en menos de 24 horas.</p>
+
+        <div class="form-group">
+          <label>Nombre y Cargo del Decisor:</label>
+          <input type="text" class="form-input" id="contactName" placeholder="Ej. Dra. Camila Gómez - Jefe de Nutrición" required>
+        </div>
+
+        <div class="form-group">
+          <label>Empresa, Clínica o Institución:</label>
+          <input type="text" class="form-input" id="contactCompany" placeholder="Ej. Clínica San Lucas IPS" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label>Correo Corporativo:</label>
+            <input type="email" class="form-input" id="contactEmail" placeholder="compras@empresa.com" required>
+          </div>
+          <div class="form-group">
+            <label>Teléfono / Celular:</label>
+            <input type="tel" class="form-input" id="contactPhone" placeholder="310 000 0000" required>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button class="btn btn-secondary" style="flex: 1;" onclick="goToStep(2)">← Atrás</button>
+          <button class="btn btn-primary" style="flex: 2;" onclick="submitQuote()">Generar y Enviar Solicitud</button>
+        </div>
+      </div>
+
+      <!-- PANTALLA ÉXITO -->
+      <div class="wizard-step" id="step-success" style="text-align: center; padding: 20px 10px;">
+        <div style="width: 56px; height: 56px; background: #DEF7EC; color: #03543F; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: bold;">
+          ✓
+        </div>
+        <h3 style="font-size: 22px; margin-bottom: 8px;">Solicitud Registrada Exitosamente</h3>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;">
+          Hemos asignado un radicado interno a su requerimiento. Un asesor comercial y nuestro equipo de nutrición se comunicarán en menos de 24 horas hábiles.
+        </p>
+        <button class="btn btn-primary" onclick="closeQuoteModal()">Cerrar y Volver al Sitio</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">CATERING C.H. PRAY S.A.S.</h5>
+        <p style="font-size: 13px; color: #9CA3AF; margin-bottom: 16px; line-height: 1.5;">
+          Soluciones integrales de alimentación institucional, dietas hospitalarias, casinos corporativos y proteínas empacadas al vacío con sede en Bogotá.
+        </p>
+        <span class="badge-pill" style="background: rgba(200, 150, 62, 0.2); color: #E5C378;">
+          NIT 901.815.422-7
+        </span>
+      </div>
+
+      <div class="footer-col">
+        <h5>Líneas de Portafolio</h5>
+        <ul class="footer-links">
+          <li><a href="#soluciones" onclick="switchTab(0)">Dietas Hospitalarias Especializadas</a></li>
+          <li><a href="#soluciones" onclick="switchTab(1)">Casinos & Almuerzos para Empresas</a></li>
+          <li><a href="#soluciones" onclick="switchTab(1)">Refrigerios Saludables & Pausas</a></li>
+          <li><a href="#vacío">Proteínas al Vacío para Restaurantes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Sede & Operación</h5>
+        <ul class="footer-links">
+          <li>Cra. 24D #3-27 Sur, Bogotá D.C.</li>
+          <li>Lunes a Sábado: 5:00 AM – 6:00 PM</li>
+          <li>Cobertura: Bogotá & Sabana Norte/Occidente</li>
+          <li><a href="mailto:comercial@chpray.com">comercial@chpray.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Atención Comercial</h5>
+        <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="openQuoteModal('cotizacion')">
+          Solicitar Cotización Formal
+        </button>
+        <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #374151; color: #D1D5DB; background: #1F2937;">
+          Ver Sede y Ubicación
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Catering C.H. Pray S.A.S. Todos los derechos reservados.</div>
+      <div>Tratamiento de Datos Personales conforme a la Ley 1581 de 2012.</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    let currentTabIndex = 0;
+    let selectedServiceName = "Hospitalario";
+
+    // 1. PESTAÑAS (FLUID SPRING TABS)
+    function updateTabIndicator(index) {
+      const buttons = document.querySelectorAll('.tab-btn');
+      const indicator = document.getElementById('tabIndicator');
+      const targetBtn = buttons[index];
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      targetBtn.classList.add('active');
+
+      indicator.style.width = `${targetBtn.offsetWidth}px`;
+      indicator.style.transform = `translateX(${targetBtn.offsetLeft - 4}px)`;
+    }
+
+    function switchTab(index) {
+      currentTabIndex = index;
+      updateTabIndicator(index);
+
+      const panels = document.querySelectorAll('.tab-panel');
+      panels.forEach((p, idx) => {
+        if (idx === index) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('load', () => {
+      updateTabIndicator(0);
+      calculateSavings(80);
+    });
+
+    window.addEventListener('resize', () => {
+      updateTabIndicator(currentTabIndex);
+    });
+
+    // 2. CALCULADORA DE PROTEÍNAS
+    function calculateSavings(kg) {
+      document.getElementById('kgLabel').innerText = `${kg} kg`;
+      const merma = (kg * 0.15).toFixed(1);
+      const horas = Math.round(kg * 0.2);
+
+      document.getElementById('mermaKg').innerText = `${merma} kg`;
+      document.getElementById('horasAhorro').innerText = `${horas} h`;
+    }
+
+    // 3. MODAL DE COTIZACIÓN
+    function openQuoteModal(initialType) {
+      const modal = document.getElementById('quoteModal');
+      modal.classList.add('active');
+      goToStep(1);
+    }
+
+    function closeQuoteModal() {
+      const modal = document.getElementById('quoteModal');
+      modal.classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'quoteModal') closeQuoteModal();
+    }
+
+    function goToStep(stepNumber) {
+      document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+      document.querySelectorAll('.step-tick').forEach(tick => tick.classList.remove('active'));
+
+      const target = document.getElementById(`step-${stepNumber}`);
+      if (target) target.classList.add('active');
+
+      for (let i = 1; i <= stepNumber; i++) {
+        const tick = document.getElementById(`tick-${i}`);
+        if (tick) tick.classList.add('active');
+      }
+    }
+
+    function selectService(element, serviceName) {
+      document.querySelectorAll('.selectable-card').forEach(card => card.classList.remove('selected'));
+      element.classList.add('selected');
+      selectedServiceName = serviceName;
+    }
+
+    function submitQuote() {
+      const name = document.getElementById('contactName').value;
+      const company = document.getElementById('contactCompany').value;
+      const email = document.getElementById('contactEmail').value;
+      const phone = document.getElementById('contactPhone').value;
+
+      if (!name || !company || !email || !phone) {
+        alert("Por favor complete los campos obligatorios.");
+        return;
+      }
+
+      document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+      document.getElementById('step-success').classList.add('active');
+    }
+
+    function handleDirectContact(e) {
+      e.preventDefault();
+      alert("Su solicitud ha sido enviada al área comercial de Catering C.H. Pray S.A.S. Nos pondremos en contacto en breve.");
+      e.target.reset();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeQuoteModal();
+    });
+  </script>
+</body>
+</html>
