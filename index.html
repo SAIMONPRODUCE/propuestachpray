@@ -1090,12 +1090,12 @@
     }
 
     /* Al activarse el paso de éxito: círculo → chulito → textos escalonados */
-    #step-success.active .success-mark { animation: mark-in 250ms var(--smooth-easing) both; }
-    #step-success.active .success-mark .check { animation: check-draw 300ms var(--smooth-easing) 150ms both; }
-    #step-success.active .stagger { animation: rise-in 300ms var(--smooth-easing) both; }
-    #step-success.active .stagger:nth-child(2) { animation-delay: 220ms; }
-    #step-success.active .stagger:nth-child(3) { animation-delay: 280ms; }
-    #step-success.active .stagger:nth-child(4) { animation-delay: 340ms; }
+    .success-state.active .success-mark { animation: mark-in 250ms var(--smooth-easing) both; }
+    .success-state.active .success-mark .check { animation: check-draw 300ms var(--smooth-easing) 150ms both; }
+    .success-state.active .stagger { animation: rise-in 300ms var(--smooth-easing) both; }
+    .success-state.active .stagger:nth-child(2) { animation-delay: 220ms; }
+    .success-state.active .stagger:nth-child(3) { animation-delay: 280ms; }
+    .success-state.active .stagger:nth-child(4) { animation-delay: 340ms; }
 
     @keyframes mark-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
     @keyframes check-draw { from { stroke-dashoffset: 32; } to { stroke-dashoffset: 0; } }
@@ -1103,12 +1103,24 @@
 
     @media (prefers-reduced-motion: reduce) {
       .send-spinner { animation: send-pulse 1.2s ease-in-out infinite; }
-      #step-success.active .success-mark,
-      #step-success.active .stagger { animation: fade-in 200ms ease both; }
-      #step-success.active .success-mark .check { animation: none; }
+      .success-state.active .success-mark,
+      .success-state.active .stagger { animation: fade-in 200ms ease both; }
+      .success-state.active .success-mark .check { animation: none; }
     }
 
     @keyframes send-pulse { 50% { opacity: 0.4; } }
+
+    /* Estados de envío dentro de la tarjeta de contacto */
+    .flow-step { display: none; }
+    .flow-step.active { display: block; }
+
+    .contact-form-pane.is-status {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-form-pane.is-status > :not(.flow-step.active) { display: none; }
     @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
     .option-grid {
@@ -1877,6 +1889,25 @@
               Enviar Requerimiento a Gerencia Comercial
             </button>
           </form>
+
+          <div class="flow-step send-state" id="contact-sending" role="status" aria-live="polite">
+            <svg class="send-spinner" viewBox="0 0 48 48" aria-hidden="true">
+              <circle class="track" cx="24" cy="24" r="20"/>
+              <circle class="arc" cx="24" cy="24" r="20"/>
+            </svg>
+            <h3>Enviando su solicitud…</h3>
+            <p>Estamos registrando sus datos. Esto toma solo unos segundos.</p>
+          </div>
+
+          <div class="flow-step send-state success-state" id="contact-success" role="status" aria-live="polite">
+            <svg class="success-mark" viewBox="0 0 56 56" aria-hidden="true">
+              <circle class="disc" cx="28" cy="28" r="28"/>
+              <path class="check" d="M17 29l7 7 15-15"/>
+            </svg>
+            <h3 class="stagger" style="font-size: 22px; margin-bottom: 8px;">Solicitud Registrada Exitosamente</h3>
+            <p class="stagger" style="margin-bottom: 24px;">Gracias por escribirnos. Nuestro equipo comercial le responderá en menos de 48 horas hábiles.</p>
+            <div class="stagger"><button type="button" class="btn btn-secondary" onclick="resetContactForm()">Enviar otra solicitud</button></div>
+          </div>
         </div>
       </div>
     </section>
@@ -2011,7 +2042,7 @@
         <p>Estamos registrando sus datos. Esto toma solo unos segundos.</p>
       </div>
 
-      <div class="wizard-step send-state" id="step-success" role="status" aria-live="polite">
+      <div class="wizard-step send-state success-state" id="step-success" role="status" aria-live="polite">
         <svg class="success-mark" viewBox="0 0 56 56" aria-hidden="true">
           <circle class="disc" cx="28" cy="28" r="28"/>
           <path class="check" d="M17 29l7 7 15-15"/>
@@ -2242,9 +2273,33 @@
         telefono: val('dirPhone'),
         mensaje: val('dirMessage')
       };
-      if (!(await sendLead(data, document.getElementById('dirSubmitBtn')))) return;
-      alert("¡Gracias! Recibimos su solicitud y le responderemos en menos de 48 horas hábiles.");
-      e.target.reset();
+      const pane = document.querySelector('.contact-form-pane');
+      pane.style.minHeight = pane.offsetHeight + 'px'; // la tarjeta conserva su alto: la página no salta
+      showContactStep('contact-sending');
+      const [ok] = await Promise.all([
+        sendLead(data, document.getElementById('dirSubmitBtn')),
+        new Promise(r => setTimeout(r, 700))
+      ]);
+      if (ok) {
+        e.target.reset();
+        showContactStep('contact-success');
+      } else {
+        resetContactForm(false);
+      }
+    }
+
+    function showContactStep(id) {
+      const pane = document.querySelector('.contact-form-pane');
+      pane.querySelectorAll('.flow-step').forEach(step => step.classList.toggle('active', step.id === id));
+      pane.classList.add('is-status');
+    }
+
+    function resetContactForm(focus = true) {
+      const pane = document.querySelector('.contact-form-pane');
+      pane.querySelectorAll('.flow-step').forEach(step => step.classList.remove('active'));
+      pane.classList.remove('is-status');
+      pane.style.minHeight = '';
+      if (focus) document.getElementById('dirName').focus();
     }
 
     // 7. ETIQUETAS CON DESCRIPCIÓN (dietas, modalidades y cortes)
