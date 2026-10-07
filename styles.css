@@ -1744,8 +1744,8 @@ header { view-transition-name: site-header; }
 
 /* Bandas a todo el ancho sin cambiar el contenedor de 1200 px:
    la sombra extiende el color a los lados y clip-path recorta arriba y abajo */
-.theme-warm .tabs-section,
-.theme-warm .trust-matrix {
+.theme-warm .band-sage,
+.theme-warm .band-navy {
   margin: 0 auto;
   padding-top: 72px;
   padding-bottom: 72px;
@@ -1754,14 +1754,14 @@ header { view-transition-name: site-header; }
   clip-path: inset(0 -100vmax);
 }
 
-.theme-warm .tabs-section { --band: var(--band-sage); }
+.theme-warm .band-sage { --band: var(--band-sage); }
 .theme-warm .proteins-section { margin-top: 72px; }
 
-/* Inocuidad en azul abisal: corta la página en dos y da peso a la sección de confianza */
-.theme-warm .trust-matrix { --band: var(--navy); }
-.theme-warm .trust-matrix .section-title-wrap h2 { color: #FFFFFF; }
-.theme-warm .trust-matrix .section-title-wrap p { color: #A9BBC2; }
-.theme-warm .trust-matrix .matrix-card { border-color: transparent; }
+/* Banda azul abisal (inocuidad, garantías): corta la página y da peso a la sección de confianza */
+.theme-warm .band-navy { --band: var(--navy); }
+.theme-warm .band-navy .section-title-wrap h2 { color: #FFFFFF; }
+.theme-warm .band-navy .section-title-wrap p { color: #A9BBC2; }
+.theme-warm .band-navy .matrix-card { border-color: transparent; }
 
 /* Sello de espigas del logo: decorativo, monocromo, 5–7 % y nunca detrás de texto largo */
 .theme-warm .hero,
@@ -1836,7 +1836,7 @@ header { view-transition-name: site-header; }
 }
 
 @media (max-width: 640px) {
-  .theme-warm .tabs-section,
-  .theme-warm .trust-matrix { padding-top: 48px; padding-bottom: 48px; margin: 0 auto; }
+  .theme-warm .band-sage,
+  .theme-warm .band-navy { padding-top: 48px; padding-bottom: 48px; margin: 0 auto; }
   .theme-warm .proteins-section { margin-top: 48px; }
 }
