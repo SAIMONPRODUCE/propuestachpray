@@ -1043,6 +1043,74 @@
       display: block;
     }
 
+    /* ENVÍO: anillo de carga y confirmación animada */
+    .send-state {
+      text-align: center;
+      padding: 28px 10px 20px;
+    }
+
+    .send-spinner {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 18px;
+      display: block;
+      animation: send-spin 0.8s linear infinite;
+    }
+
+    .send-spinner circle { fill: none; stroke-width: 4; }
+    .send-spinner .track { stroke: var(--border); }
+    .send-spinner .arc {
+      stroke: var(--primary);
+      stroke-linecap: round;
+      stroke-dasharray: 126;
+      stroke-dashoffset: 92; /* arco visible de ~1/4 */
+    }
+
+    @keyframes send-spin { to { transform: rotate(360deg); } }
+
+    .send-state h3 { font-size: 20px; margin-bottom: 6px; }
+    .send-state p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+    .success-mark {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 18px;
+      display: block;
+    }
+
+    .success-mark .disc { fill: var(--primary); }
+    .success-mark .check {
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 32;
+      stroke-dashoffset: 0;
+    }
+
+    /* Al activarse el paso de éxito: círculo → chulito → textos escalonados */
+    #step-success.active .success-mark { animation: mark-in 250ms var(--smooth-easing) both; }
+    #step-success.active .success-mark .check { animation: check-draw 300ms var(--smooth-easing) 150ms both; }
+    #step-success.active .stagger { animation: rise-in 300ms var(--smooth-easing) both; }
+    #step-success.active .stagger:nth-child(2) { animation-delay: 220ms; }
+    #step-success.active .stagger:nth-child(3) { animation-delay: 280ms; }
+    #step-success.active .stagger:nth-child(4) { animation-delay: 340ms; }
+
+    @keyframes mark-in { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: none; } }
+    @keyframes check-draw { from { stroke-dashoffset: 32; } to { stroke-dashoffset: 0; } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .send-spinner { animation: send-pulse 1.2s ease-in-out infinite; }
+      #step-success.active .success-mark,
+      #step-success.active .stagger { animation: fade-in 200ms ease both; }
+      #step-success.active .success-mark .check { animation: none; }
+    }
+
+    @keyframes send-pulse { 50% { opacity: 0.4; } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
     .option-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1933,15 +2001,26 @@
       </div>
 
       <!-- PANTALLA ÉXITO -->
-      <div class="wizard-step" id="step-success" style="text-align: center; padding: 20px 10px;">
-        <div style="width: 56px; height: 56px; background: #DEF7EC; color: #03543F; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; font-weight: bold;">
-          ✓
-        </div>
-        <h3 style="font-size: 22px; margin-bottom: 8px;">Solicitud Registrada Exitosamente</h3>
-        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;">
+      <!-- ENVIANDO -->
+      <div class="wizard-step send-state" id="step-sending" role="status" aria-live="polite">
+        <svg class="send-spinner" viewBox="0 0 48 48" aria-hidden="true">
+          <circle class="track" cx="24" cy="24" r="20"/>
+          <circle class="arc" cx="24" cy="24" r="20"/>
+        </svg>
+        <h3>Enviando su solicitud…</h3>
+        <p>Estamos registrando sus datos. Esto toma solo unos segundos.</p>
+      </div>
+
+      <div class="wizard-step send-state" id="step-success" role="status" aria-live="polite">
+        <svg class="success-mark" viewBox="0 0 56 56" aria-hidden="true">
+          <circle class="disc" cx="28" cy="28" r="28"/>
+          <path class="check" d="M17 29l7 7 15-15"/>
+        </svg>
+        <h3 class="stagger" style="font-size: 22px; margin-bottom: 8px;">Solicitud Registrada Exitosamente</h3>
+        <p class="stagger" style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5;">
           Ya registramos su solicitud. Un asesor comercial y nuestro equipo de nutrición se comunicarán con usted en menos de 48 horas hábiles.
         </p>
-        <button class="btn btn-primary" onclick="closeQuoteModal()">Cerrar y Volver al Sitio</button>
+        <div class="stagger"><button class="btn btn-primary" onclick="closeQuoteModal()">Cerrar y Volver al Sitio</button></div>
       </div>
 
     </div>
@@ -2135,9 +2214,19 @@
         return;
       }
 
-      if (!(await sendLead(data, document.getElementById('quoteSubmitBtn')))) return;
+      // Anillo de carga visible al menos 700 ms para que no parpadee
+      showWizardStep('step-sending');
+      const [ok] = await Promise.all([
+        sendLead(data, document.getElementById('quoteSubmitBtn')),
+        new Promise(r => setTimeout(r, 700))
+      ]);
+      showWizardStep(ok ? 'step-success' : 'step-3');
+    }
+
+    // Cambia de paso sin tocar la barra de progreso (que ya está completa en el paso 3)
+    function showWizardStep(id) {
       document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
-      document.getElementById('step-success').classList.add('active');
+      document.getElementById(id).classList.add('active');
     }
 
     async function handleDirectContact(e) {
