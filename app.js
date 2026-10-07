@@ -258,6 +258,46 @@ function resetContactForm(focus = true) {
   });
 })();
 
+// 8. PREGUNTAS FRECUENTES: la tarjeta crece o se encoge en vez de saltar
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const ease = 'cubic-bezier(0.23, 1, 0.32, 1)';
+  document.querySelectorAll('.faq-list details').forEach(item => {
+    const summary = item.querySelector('summary');
+    const answer = item.querySelector('p');
+    let anim = null;
+
+    summary.addEventListener('click', e => {
+      if (reduce.matches) return; // comportamiento nativo, sin movimiento
+      e.preventDefault();
+      const opening = !item.open || item.classList.contains('closing');
+      const from = item.offsetHeight; // interrumpible: parte de la altura actual
+      if (anim) anim.cancel();
+
+      item.classList.toggle('closing', !opening);
+      if (opening) item.open = true;
+      const to = opening ? item.scrollHeight + 2 : summary.offsetHeight + 2; // + bordes
+
+      anim = item.animate([{ height: from + 'px' }, { height: to + 'px' }], {
+        duration: opening ? 300 : 220,
+        easing: opening ? ease : 'ease-out'
+      });
+      item.style.overflow = 'hidden';
+      if (opening) {
+        answer.animate(
+          [{ opacity: 0, transform: 'translateY(-4px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 260, delay: 60, easing: ease, fill: 'backwards' }
+        );
+      }
+      anim.onfinish = () => {
+        anim = null;
+        item.style.overflow = '';
+        if (!opening) { item.open = false; item.classList.remove('closing'); }
+      };
+    });
+  });
+})();
+
 // 6. WHATSAPP FLOTANTE
 (() => {
   const btn = document.getElementById('waFloat');

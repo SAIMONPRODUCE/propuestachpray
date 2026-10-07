@@ -1469,10 +1469,17 @@ footer {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
-  transition: border-color 150ms ease;
+  transition: border-color 150ms ease, box-shadow 200ms ease;
 }
 
-.faq-list details[open] { border-color: var(--eucalyptus); }
+.faq-list details[open]:not(.closing) { border-color: var(--eucalyptus); box-shadow: var(--shadow-md); }
+
+@media (hover: hover) and (pointer: fine) {
+  .faq-list details:hover { border-color: var(--eucalyptus); }
+  .faq-list details:hover summary::after { background: var(--eucalyptus); }
+}
+
+.faq-list summary:active::after { scale: 0.9; }
 
 .faq-list summary {
   list-style: none;
@@ -1502,10 +1509,10 @@ footer {
   color: var(--primary-text);
   font-size: 18px;
   font-weight: 600;
-  transition: transform 200ms var(--smooth-easing);
+  transition: transform 250ms var(--smooth-easing), background-color 150ms ease, scale 100ms ease-out;
 }
 
-.faq-list details[open] summary::after { transform: rotate(45deg); }
+.faq-list details[open]:not(.closing) summary::after { transform: rotate(45deg); }
 
 .faq-list summary:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: var(--radius-md); }
 
