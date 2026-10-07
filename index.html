@@ -611,6 +611,28 @@
       color: var(--accent-hover);
     }
 
+    button.diet-tag {
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease, transform 100ms ease-out;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      button.diet-tag:not(.highlight):hover { border-color: var(--primary); }
+    }
+
+    button.diet-tag:active { transform: scale(0.97); }
+
+    button.diet-tag:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+    .diet-desc {
+      margin: 0 0 20px;
+      min-height: 4.7em; /* reserva ~3 líneas para que la tarjeta no salte al cambiar */
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-main);
+    }
+
     /* SECCION ESPECIFICA: PROTEINAS AL VACIO */
     .proteins-section {
       max-width: 1200px;
@@ -1450,12 +1472,13 @@
             <div>
               <div class="panel-display-header">Prescripciones Clínicas Cubiertas</div>
               <div class="diet-badge-group">
-                <span class="diet-tag highlight">Dieta Normal Balanceada</span>
-                <span class="diet-tag">Blanda / Semiblanda</span>
-                <span class="diet-tag">Hiposódica Estricta</span>
-                <span class="diet-tag">Hiperproteica</span>
-                <span class="diet-tag">Líquida Clara & Completa</span>
+                <button type="button" class="diet-tag highlight" aria-pressed="true" data-desc="Para pacientes sin restricciones alimentarias: menú completo con proteína, carbohidrato, verduras y fruta, en porciones definidas por la minuta del nutricionista.">Dieta Normal Balanceada</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Preparaciones de textura suave, cocidas al vapor o hervidas, bajas en grasa y condimentos. Para pacientes en recuperación o con dificultad para masticar o digerir.">Blanda / Semiblanda</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Sin sal añadida y sin ingredientes altos en sodio como embutidos o caldos concentrados. Para pacientes con hipertensión o enfermedad renal o cardiaca; el sabor se logra con hierbas y especias naturales.">Hiposódica Estricta</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Mayor aporte de proteína de alto valor (carnes magras, huevo, lácteos y leguminosas) para apoyar la cicatrización, la recuperación posquirúrgica y la conservación de la masa muscular.">Hiperproteica</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Clara: caldos colados, aromáticas y gelatinas, para el pre y posoperatorio inmediato. Completa: suma lácteos, cremas y jugos, como transición antes de la dieta blanda.">Líquida Clara & Completa</button>
               </div>
+              <p class="diet-desc" aria-live="polite"></p>
             </div>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
               <strong style="color: var(--primary-text);">Garantía Documental:</strong> Planillas de control de lotes, fichas técnicas de gramaje y documentación sanitaria disponibles para su comité. <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
@@ -1495,11 +1518,12 @@
             <div>
               <div class="panel-display-header">Modalidades de Suministro</div>
               <div class="diet-badge-group">
-                <span class="diet-tag highlight">Almuerzo Caliente en Sitio</span>
-                <span class="diet-tag">Línea de Autoservicio / Casino</span>
-                <span class="diet-tag">Refrigerio Individual Sellado</span>
-                <span class="diet-tag">Estaciones de Café & Breaks</span>
+                <button type="button" class="diet-tag highlight" aria-pressed="true" data-desc="Llevamos el almuerzo caliente a sus instalaciones en recipientes termo-aislados, listo para servir a la hora acordada.">Almuerzo Caliente en Sitio</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Montamos una línea de servicio en su comedor para que los colaboradores elijan entre las opciones del menú del día.">Línea de Autoservicio / Casino</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Refrigerios porcionados y empacados de forma individual, fáciles de repartir en capacitaciones, turnos o jornadas de campo.">Refrigerio Individual Sellado</button>
+                <button type="button" class="diet-tag" aria-pressed="false" data-desc="Estación de café, aromáticas y pasabocas montada en el lugar de su reunión, comité o pausa activa.">Estaciones de Café & Breaks</button>
               </div>
+              <p class="diet-desc" aria-live="polite"></p>
             </div>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
               <strong style="color: var(--primary-text);">Puntualidad:</strong> Despacho propio en Bogotá con horarios de entrega acordados en el contrato.
@@ -1538,11 +1562,12 @@
           <div class="panel-display-card">
             <div class="panel-display-header">Cortes Estandarizados</div>
             <div class="diet-badge-group">
-              <span class="diet-tag highlight">Lomo Fino Res (220g)</span>
-              <span class="diet-tag">Punta de Anca (250g)</span>
-              <span class="diet-tag">Pechuga Deshuesada (200g)</span>
-              <span class="diet-tag">Bondiola Cerdo (200g)</span>
+              <button type="button" class="diet-tag highlight" aria-pressed="true" data-desc="El corte más tierno de la res, limpio y porcionado a 220 g. Ideal para plancha o medallones con salsa.">Lomo Fino Res (220g)</button>
+              <button type="button" class="diet-tag" aria-pressed="false" data-desc="Corte jugoso con su capa de grasa, porcionado a 250 g. Ideal para parrilla y asados.">Punta de Anca (250g)</button>
+              <button type="button" class="diet-tag" aria-pressed="false" data-desc="Pechuga de pollo sin hueso ni piel, porcionada a 200 g. Versátil para plancha, horno o menú ejecutivo.">Pechuga Deshuesada (200g)</button>
+              <button type="button" class="diet-tag" aria-pressed="false" data-desc="Corte de cerdo con buena infiltración de grasa, porcionado a 200 g. Ideal para horno lento, parrilla o desmechado.">Bondiola Cerdo (200g)</button>
             </div>
+              <p class="diet-desc" aria-live="polite"></p>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
               <strong style="color: var(--primary-text);">Entrega en Frío:</strong> Despacho programado con registro de temperatura en transporte.
             </div>
@@ -2122,6 +2147,32 @@
       alert("¡Gracias! Recibimos su solicitud y le responderemos en menos de 48 horas hábiles.");
       e.target.reset();
     }
+
+    // 7. ETIQUETAS CON DESCRIPCIÓN (dietas, modalidades y cortes)
+    (() => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('.diet-badge-group').forEach(group => {
+        const desc = group.nextElementSibling;
+        const tags = [...group.querySelectorAll('button.diet-tag')];
+        const show = (tag, animate) => {
+          tags.forEach(t => {
+            const on = t === tag;
+            t.classList.toggle('highlight', on);
+            t.setAttribute('aria-pressed', on);
+          });
+          desc.textContent = tag.dataset.desc;
+          if (animate) {
+            desc.animate(
+              reduce ? [{ opacity: 0 }, { opacity: 1 }]
+                     : [{ opacity: 0, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }],
+              { duration: 200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' }
+            );
+          }
+        };
+        tags.forEach(t => t.addEventListener('click', () => { if (t.getAttribute('aria-pressed') !== 'true') show(t, true); }));
+        show(group.querySelector('.highlight') || tags[0], false);
+      });
+    })();
 
     // 6. WHATSAPP FLOTANTE
     (() => {
