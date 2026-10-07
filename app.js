@@ -367,3 +367,31 @@ function resetContactForm(focus = true) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeQuoteModal();
 });
+
+// 9. BARRA DE PROGRESO AL CAMBIAR DE PÁGINA
+// La transición la hace el CSS (@view-transition). Esto solo da señal de vida
+// cuando la siguiente página tarda: si carga en menos de 150 ms, la barra no aparece.
+(() => {
+  const bar = document.createElement('div');
+  bar.className = 'nav-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  let timer = null;
+
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target === '_blank' || a.hasAttribute('download')) return;
+    const url = new URL(a.href, location.href);
+    if (url.origin !== location.origin) return; // WhatsApp, correo, teléfono
+    if (url.pathname === location.pathname && url.search === location.search) return; // ancla en la misma página
+    clearTimeout(timer);
+    timer = setTimeout(() => bar.classList.add('active'), 150);
+  });
+
+  // Al volver con el botón atrás la página sale de la caché: la barra debe estar apagada
+  window.addEventListener('pageshow', () => {
+    clearTimeout(timer);
+    bar.classList.remove('active');
+  });
+})();

@@ -1537,3 +1537,54 @@ footer {
   .faq-list summary { padding: 16px 18px; font-size: 15px; min-height: 56px; }
   .faq-list details p { padding: 0 18px 18px; }
 }
+
+/* ===== TRANSICIÓN ENTRE PÁGINAS (View Transitions nativas) =====
+   Navegadores sin soporte navegan como siempre, sin animación. */
+@view-transition { navigation: auto; }
+
+/* Encabezado y barra superior se quedan quietos: se siente como el mismo sitio */
+.top-bar { view-transition-name: top-bar; }
+header { view-transition-name: site-header; }
+
+::view-transition-group(top-bar),
+::view-transition-group(site-header) { animation-duration: 200ms; }
+
+/* Sale rápido hacia arriba; la nueva entra subiendo, un poco más pausada */
+::view-transition-old(root) { animation: page-out 150ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+::view-transition-new(root) { animation: page-in 260ms cubic-bezier(0.23, 1, 0.32, 1) 40ms both; }
+
+@keyframes page-out { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(10px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root) { animation: page-fade-out 150ms ease both; }
+  ::view-transition-new(root) { animation: page-fade-in 200ms ease both; }
+  @keyframes page-fade-out { to { opacity: 0; } }
+  @keyframes page-fade-in { from { opacity: 0; } }
+}
+
+/* Barra de progreso: solo aparece si la página tarda en cargar (red lenta) */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 100;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-progress.active {
+  opacity: 1;
+  transform: scaleX(0.85);
+  /* avanza rápido al principio y se frena: nunca llega al final por sí sola */
+  transition: transform 2.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-progress.active { transform: scaleX(0.6); transition: opacity 200ms ease; }
+}
