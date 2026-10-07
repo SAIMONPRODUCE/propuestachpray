@@ -70,6 +70,7 @@
       --shadow-lg: 0 12px 30px rgba(0,0,0,0.08);
       --spring-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
       --smooth-easing: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     * {
@@ -180,6 +181,7 @@
     }
 
     nav {
+      position: relative;
       display: flex;
       gap: 22px;
       align-items: center;
@@ -193,8 +195,44 @@
       transition: color 0.15s ease;
     }
 
-    nav a:hover {
-      color: var(--primary-text);
+    nav a {
+      padding: 6px 0;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      nav a:hover {
+        color: var(--primary-text);
+      }
+    }
+
+    nav a[aria-current="true"] {
+      color: var(--text-main);
+    }
+
+    /* Indicador de sección activa: un solo elemento que se desliza con transform */
+    .nav-indicator {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--primary);
+      transform-origin: left center;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .nav-indicator.ready {
+      transition: transform 250ms var(--ease-in-out), opacity 200ms ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-indicator.ready { transition: opacity 200ms ease; }
+    }
+
+    section[id] {
+      scroll-margin-top: 84px;
     }
 
     .header-actions {
@@ -1063,6 +1101,7 @@
       <a href="#vacío">Proteínas al Vacío</a>
       <a href="#inocuidad">Inocuidad & BPM</a>
       <a href="#contacto">Contacto & Sede</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
     </nav>
 
     <div class="header-actions">
@@ -1849,6 +1888,53 @@
       alert("¡Gracias! Recibimos su solicitud y le responderemos en menos de 48 horas hábiles.");
       e.target.reset();
     }
+
+    // 5. MENÚ: RESALTA LA SECCIÓN EN PANTALLA
+    (() => {
+      const links = [...document.querySelectorAll('nav a[href^="#"]')];
+      const sections = links.map(a => document.getElementById(decodeURIComponent(a.hash.slice(1))));
+      const indicator = document.querySelector('.nav-indicator');
+      let current = null;
+      let lockUntil = 0;
+
+      function setActive(link) {
+        if (link === current) return;
+        current = link;
+        links.forEach(a => a === link ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+        place();
+      }
+
+      function place() {
+        if (!current) { indicator.style.opacity = '0'; return; }
+        indicator.style.transform = `translateX(${current.offsetLeft}px) scaleX(${current.offsetWidth / 100})`;
+        indicator.style.opacity = '1';
+      }
+
+      function onScroll() {
+        if (Date.now() < lockUntil) return;
+        const line = window.innerHeight * 0.35;
+        const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        let active = null;
+        sections.forEach((sec, i) => { if (sec && sec.getBoundingClientRect().top <= line) active = links[i]; });
+        setActive(atBottom ? links[links.length - 1] : active);
+      }
+
+      // Al hacer clic se marca de inmediato, sin pasar por las secciones intermedias
+      links.forEach(a => a.addEventListener('click', () => {
+        lockUntil = Date.now() + 1000;
+        setActive(a);
+      }));
+      window.addEventListener('scrollend', () => { lockUntil = 0; onScroll(); });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', place);
+
+      onScroll();
+      document.fonts.ready.then(() => {
+        place();
+        requestAnimationFrame(() => indicator.classList.add('ready'));
+      });
+    })();
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeQuoteModal();
