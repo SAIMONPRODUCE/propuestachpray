@@ -1083,17 +1083,31 @@
       text-decoration: none;
       opacity: 0;
       transform: translateY(8px) scale(0.96);
+      filter: blur(4px);
       pointer-events: none;
-      /* salida rápida */
-      transition: opacity 150ms ease-out, transform 150ms ease-out;
+      /* salida rápida, por el mismo camino de entrada */
+      transition: opacity 150ms ease-out, transform 150ms ease-out, filter 150ms ease-out;
     }
+
+    /* Reflejo especular: luz sobre la mitad superior del cristal */
+    .wa-float::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 52%);
+      pointer-events: none;
+    }
+
+    .wa-float > * { position: relative; }
 
     .wa-float.visible {
       opacity: 1;
       transform: none;
+      filter: none;
       pointer-events: auto;
-      /* entrada un poco más pausada */
-      transition: opacity 250ms var(--smooth-easing), transform 250ms var(--smooth-easing);
+      /* entrada un poco más pausada: el material se forma (desenfoque + escala juntos) */
+      transition: opacity 250ms var(--smooth-easing), transform 250ms var(--smooth-easing), filter 250ms var(--smooth-easing);
     }
 
     .wa-float-icon {
@@ -1120,12 +1134,11 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--navy);
-      opacity: 0.75;
     }
 
     .wa-float-kicker::before {
@@ -1139,6 +1152,7 @@
     .wa-float-label {
       font-size: 14px;
       font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .wa-float-arrow {
@@ -1155,7 +1169,7 @@
 
     .wa-float.visible:active {
       transform: scale(0.97);
-      transition: transform 160ms ease-out;
+      transition: transform 100ms ease-out;
     }
 
     .wa-float:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
@@ -1164,8 +1178,18 @@
       .wa-float { background: rgba(255, 255, 255, 0.96); }
     }
 
+    @media (prefers-reduced-transparency: reduce) {
+      .wa-float { background: #FFFFFF; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .wa-float::before { display: none; }
+    }
+
+    @media (prefers-contrast: more) {
+      .wa-float { background: #FFFFFF; border: 2px solid var(--navy); -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .wa-float::before { display: none; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .wa-float, .wa-float.visible, .wa-float.visible:active { transform: none; transition: opacity 200ms ease; }
+      .wa-float, .wa-float.visible, .wa-float.visible:active { transform: none; filter: none; transition: opacity 200ms ease; }
       .wa-float-arrow { transition: none; }
     }
 
@@ -1236,7 +1260,10 @@
 
       /* WhatsApp flotante: solo el ícono, 56px */
       .wa-float { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); padding: 0; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
-      .wa-float-text, .wa-float-arrow { display: none; }
+      .wa-float-text, .wa-float-arrow, .wa-float::before { display: none; }
+      .wa-float-icon { transition: transform 100ms ease-out; }
+      .wa-float.visible:active { transform: none; }
+      .wa-float.visible:active .wa-float-icon { transform: scale(0.94); }
       .wa-float-icon {
         width: 56px;
         height: 56px;
