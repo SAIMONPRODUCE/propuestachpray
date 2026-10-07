@@ -148,11 +148,12 @@ async function sendLead(data, btn) {
       window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Solicitud desde la web\n' + text)}`, '_blank');
       return true;
     }
-    // no-cors: Apps Script no devuelve cabeceras CORS; la petición llega igual.
-    await fetch(SHEETS_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ ...data, pagina: location.href }) });
+    // Apps Script responde "ok" solo si guardó la fila; cualquier otra respuesta es un registro perdido.
+    const res = await fetch(SHEETS_URL, { method: 'POST', body: new URLSearchParams({ ...data, pagina: location.href }) });
+    if ((await res.text()).trim() !== 'ok') throw new Error('La hoja no confirmó el registro');
     return true;
   } catch (err) {
-    alert('No pudimos enviar la solicitud. Escríbanos por WhatsApp al 312 615 6192.');
+    alert('No pudimos confirmar el registro de su solicitud. Por favor intente de nuevo o escríbanos por WhatsApp al 312 615 6192.');
     return false;
   } finally {
     btn.disabled = false;
@@ -174,14 +175,7 @@ async function submitQuote() {
     mensaje: val('contactMessage')
   };
 
-  if (!data.nombre || !data.empresa || !data.correo || !data.telefono) {
-    alert("Por favor complete los campos obligatorios.");
-    return;
-  }
-  if (!document.getElementById('quoteConsent').checked) {
-    alert("Debe autorizar el tratamiento de datos para enviar la solicitud.");
-    return;
-  }
+  if (!validateFields(['contactName', 'contactCompany', 'contactEmail', 'contactPhone', 'quoteConsent'])) return;
 
   // Anillo de carga visible al menos 700 ms para que no parpadee
   showWizardStep('step-sending');
@@ -192,6 +186,31 @@ async function submitQuote() {
   showWizardStep(ok ? 'step-success' : 'step-3');
 }
 
+// Validación antes de enviar: el navegador acepta "   " como nombre, "juan@clinica" como correo
+// y cualquier texto como teléfono. Muestra el aviso nativo en el primer campo con problema.
+function fieldError(el) {
+  if (el.type === 'checkbox') return el.checked ? '' : 'Debe autorizar el tratamiento de datos para enviar la solicitud.';
+  const v = el.value.trim();
+  if (el.required && !v) return 'Complete este campo.';
+  if (el.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Escriba un correo válido, por ejemplo nombre@empresa.com.';
+  if (el.type === 'tel' && v && (v.match(/\d/g) || []).length < 7) return 'Escriba un teléfono con al menos 7 dígitos.';
+  return '';
+}
+
+function validateFields(ids) {
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    const msg = fieldError(el);
+    el.setCustomValidity(msg);
+    if (msg) {
+      el.reportValidity();
+      el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', () => el.setCustomValidity(''), { once: true });
+      return false;
+    }
+  }
+  return true;
+}
+
 // Cambia de paso sin tocar la barra de progreso (que ya está completa en el paso 3)
 function showWizardStep(id) {
   swapStep(document.getElementById(id), id === 'step-3' ? -1 : 1);
@@ -200,6 +219,7 @@ function showWizardStep(id) {
 async function handleDirectContact(e) {
   e.preventDefault();
   if (document.getElementById('dirHp').value) return; // bot
+  if (!validateFields(['dirName', 'dirCompany', 'dirEmail', 'dirPhone'])) return;
   const val = id => document.getElementById(id).value.trim();
   const data = {
     origen: 'Formulario de contacto',

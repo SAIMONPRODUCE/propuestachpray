@@ -115,7 +115,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=3">
+  <link rel="stylesheet" href="../styles.css?v=4">
 </head>
 <body data-service="Corporativo">
 
@@ -165,7 +165,7 @@
 
     <div class="header-actions">
       <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Solicitar Muestra</button>
-      <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Cotizar Servicio</button>
+      <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Cotizar<span class="hide-narrow"> Servicio</span></button>
     </div>
   </header>
 
@@ -450,22 +450,22 @@
           <form onsubmit="handleDirectContact(event)">
             <div class="form-group">
               <label for="dirName">Nombre y Cargo:</label>
-              <input type="text" class="form-input" id="dirName" autocomplete="name" placeholder="Ej. Laura Méndez - Jefe de Talento Humano" required>
+              <input type="text" class="form-input" id="dirName" maxlength="150" autocomplete="name" placeholder="Ej. Laura Méndez - Jefe de Talento Humano" required>
             </div>
 
             <div class="form-group">
               <label for="dirCompany">Empresa, Clínica o Restaurante:</label>
-              <input type="text" class="form-input" id="dirCompany" autocomplete="organization" placeholder="Ej. Constructora Andina S.A.S." required>
+              <input type="text" class="form-input" id="dirCompany" maxlength="150" autocomplete="organization" placeholder="Ej. Constructora Andina S.A.S." required>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
               <div class="form-group">
                 <label for="dirEmail">Correo Electrónico:</label>
-                <input type="email" class="form-input" id="dirEmail" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="contacto@institucion.com" required>
+                <input type="email" class="form-input" id="dirEmail" maxlength="150" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="contacto@institucion.com" required>
               </div>
               <div class="form-group">
                 <label for="dirPhone">Teléfono de Contacto:</label>
-                <input type="tel" class="form-input" id="dirPhone" autocomplete="tel" placeholder="315 000 0000" required>
+                <input type="tel" class="form-input" id="dirPhone" maxlength="150" autocomplete="tel" placeholder="315 000 0000" required>
               </div>
             </div>
 
@@ -482,7 +482,7 @@
 
             <div class="form-group">
               <label for="dirMessage">Detalles del Requerimiento:</label>
-              <textarea class="form-textarea" id="dirMessage" placeholder="Número de colaboradores, modalidad (almuerzo, casino, refrigerios), horarios y fecha de inicio..."></textarea>
+              <textarea class="form-textarea" id="dirMessage" maxlength="1000" placeholder="Número de colaboradores, modalidad (almuerzo, casino, refrigerios), horarios y fecha de inicio..."></textarea>
             </div>
 
             <label style="display:flex; gap:8px; align-items:flex-start; font-size:12px; color:var(--text-muted); margin-top:12px; font-weight:400;">
@@ -606,28 +606,28 @@
 
         <div class="form-group">
           <label for="contactName">Nombre y Cargo del Decisor:</label>
-          <input type="text" class="form-input" id="contactName" autocomplete="name" placeholder="Ej. Dra. Camila Gómez - Jefe de Nutrición" required>
+          <input type="text" class="form-input" id="contactName" maxlength="150" autocomplete="name" placeholder="Ej. Dra. Camila Gómez - Jefe de Nutrición" required>
         </div>
 
         <div class="form-group">
           <label for="contactCompany">Empresa, Clínica o Institución:</label>
-          <input type="text" class="form-input" id="contactCompany" autocomplete="organization" placeholder="Ej. Clínica San Lucas IPS" required>
+          <input type="text" class="form-input" id="contactCompany" maxlength="150" autocomplete="organization" placeholder="Ej. Clínica San Lucas IPS" required>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label for="contactEmail">Correo Corporativo:</label>
-            <input type="email" class="form-input" id="contactEmail" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="compras@empresa.com" required>
+            <input type="email" class="form-input" id="contactEmail" maxlength="150" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="compras@empresa.com" required>
           </div>
           <div class="form-group">
             <label for="contactPhone">Teléfono / Celular:</label>
-            <input type="tel" class="form-input" id="contactPhone" autocomplete="tel" placeholder="310 000 0000" required>
+            <input type="tel" class="form-input" id="contactPhone" maxlength="150" autocomplete="tel" placeholder="310 000 0000" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="contactMessage">Mensaje <span style="font-weight:400; color:var(--text-muted);">(opcional)</span>:</label>
-          <textarea class="form-textarea" id="contactMessage" rows="3" placeholder="Cuéntenos horarios, tipos de dieta, fecha de inicio o cualquier detalle que debamos tener en cuenta..."></textarea>
+          <textarea class="form-textarea" id="contactMessage" maxlength="1000" rows="3" placeholder="Cuéntenos horarios, tipos de dieta, fecha de inicio o cualquier detalle que debamos tener en cuenta..."></textarea>
         </div>
 
         <label style="display:flex; gap:8px; align-items:flex-start; font-size:12px; color:var(--text-muted); margin-top:12px; font-weight:400;">
@@ -716,6 +716,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=3"></script>
+  <script src="../app.js?v=4"></script>
 </body>
 </html>

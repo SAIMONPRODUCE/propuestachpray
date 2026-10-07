@@ -1114,7 +1114,7 @@ footer {
 
 .option-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax(0): una palabra larga no ensancha la columna */
   gap: 10px;
 }
 
@@ -1379,7 +1379,7 @@ footer {
   .contact-info-pane h3 { font-size: 24px; }
   .contact-item a { display: inline-block; padding: 10px 0; }
   .contact-form-pane div[style*="1fr 1fr"],
-  .modal-window div[style*="1fr 1fr"] { grid-template-columns: 1fr !important; }
+  .modal-window div[style*="1fr 1fr"] { grid-template-columns: 1fr !important; gap: 0 !important; } /* apilados: el margen de cada campo ya separa */
   .form-input, .form-select, .form-textarea { font-size: 16px; min-height: 48px; }
   .form-textarea { min-height: 112px; }
   input[type="checkbox"] { width: 20px; height: 20px; flex-shrink: 0; }
@@ -1603,4 +1603,10 @@ header { view-transition-name: site-header; }
 
 @media (prefers-reduced-motion: reduce) {
   .nav-progress.active { transform: scaleX(0.6); transition: opacity 200ms ease; }
+}
+
+/* Celulares muy angostos (iPhone SE, 320 px) */
+@media (max-width: 360px) {
+  .hide-narrow { display: none; } /* "Cotizar Servicio" → "Cotizar": la marca conserva su espacio */
+  .option-grid { grid-template-columns: 1fr; } /* dos columnas de 120 px cortan las tarjetas del cotizador */
 }
