@@ -51,14 +51,14 @@ function calculateSavings(kg) {
 
 // 3. MODAL DE COTIZACIÓN
 // El botón que abre el cotizador decide la línea; si no la dice, manda la de la página (<body data-service>)
-const SERVICE_BY_TYPE = { clinico: 'Hospitalario', corporativo: 'Corporativo', evento: 'Evento', vacio: 'Proteínas' };
+const SERVICE_BY_TYPE = { clinico: 'Hospitalario', corporativo: 'Corporativo', evento: 'Evento', vacio: 'Proteínas', 'vacío': 'Proteínas', muestra_carne: 'Proteínas' };
 
 function openQuoteModal(initialType) {
   const modal = document.getElementById('quoteModal');
   const service = SERVICE_BY_TYPE[initialType] || document.body.dataset.service;
   const card = service && document.querySelector(`#step-1 .selectable-card[onclick*="'${service}'"]`);
   if (card) selectService(card, service);
-  if (initialType === 'degustacion') document.getElementById('quoteFrequency').value = 'muestra';
+  if (initialType === 'degustacion' || initialType === 'muestra_carne') document.getElementById('quoteFrequency').value = 'muestra';
   modal.classList.add('active');
   goToStep(1, false);
   if (!prefersReducedMotion.matches) {
@@ -130,6 +130,30 @@ function selectService(element, serviceName) {
     card.setAttribute('aria-pressed', card === element);
   });
   selectedServiceName = serviceName;
+  setVolumeUnit(serviceName === 'Proteínas' ? 'kg' : 'raciones');
+}
+
+// Paso 2: un restaurante compra proteína por kilos a la semana, no por raciones al día
+const VOLUME_OPTIONS = {
+  raciones: {
+    label: 'Raciones aproximadas / personas por día:',
+    options: [['20-50', '20 a 50 raciones'], ['50-150', '50 a 150 raciones'], ['150-500', '150 a 500 raciones'], ['500+', 'Más de 500 raciones diarias']],
+    selected: '50-150'
+  },
+  kg: {
+    label: 'Consumo aproximado de proteína por semana:',
+    options: [['20-50 kg/semana', '20 a 50 kg'], ['50-150 kg/semana', '50 a 150 kg'], ['150-400 kg/semana', '150 a 400 kg'], ['400+ kg/semana', 'Más de 400 kg semanales']],
+    selected: '50-150 kg/semana'
+  }
+};
+
+function setVolumeUnit(unit) {
+  const select = document.getElementById('quoteVolume');
+  if (!select || select.dataset.unit === unit) return;
+  const cfg = VOLUME_OPTIONS[unit];
+  select.dataset.unit = unit;
+  document.querySelector('label[for="quoteVolume"]').textContent = cfg.label;
+  select.replaceChildren(...cfg.options.map(([value, text]) => new Option(text, value, false, value === cfg.selected)));
 }
 
 // 4. ENVÍO DE SOLICITUDES
