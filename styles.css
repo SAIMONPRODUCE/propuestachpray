@@ -1476,7 +1476,7 @@ footer {
 
 @media (hover: hover) and (pointer: fine) {
   .faq-list details:hover { border-color: var(--eucalyptus); }
-  .faq-list details:hover summary::after { background: var(--eucalyptus); }
+  .faq-list details:hover summary::after { background-color: var(--eucalyptus); }
 }
 
 .faq-list summary:active::after { scale: 0.9; }
@@ -1498,17 +1498,16 @@ footer {
 .faq-list summary::-webkit-details-marker { display: none; }
 
 .faq-list summary::after {
-  content: "+";
+  /* "+" dibujado con dos barras centradas: un carácter de texto queda corrido según la fuente */
+  content: "";
   flex-shrink: 0;
-  display: grid;
-  place-items: center;
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--primary-subtle);
-  color: var(--primary-text);
-  font-size: 18px;
-  font-weight: 600;
+  background:
+    linear-gradient(var(--primary-text), var(--primary-text)) center / 12px 2px no-repeat,
+    linear-gradient(var(--primary-text), var(--primary-text)) center / 2px 12px no-repeat,
+    var(--primary-subtle);
   transition: transform 250ms var(--smooth-easing), background-color 150ms ease, scale 100ms ease-out;
 }
 
