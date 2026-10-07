@@ -1016,12 +1016,14 @@
       cursor: pointer;
       font-size: 16px;
       color: var(--text-muted);
+      z-index: 2;
     }
 
     .step-indicator-bar {
       display: flex;
       gap: 6px;
       margin-bottom: 24px;
+      margin-right: 40px; /* deja libre el espacio de la ✕ */
     }
 
     .step-tick {
@@ -1411,7 +1413,8 @@
       .form-textarea { min-height: 112px; }
       input[type="checkbox"] { width: 20px; height: 20px; flex-shrink: 0; }
       .modal-window { padding: 24px 20px; }
-      .modal-close-btn { width: 44px; height: 44px; }
+      .modal-close-btn { width: 44px; height: 44px; top: 4px; right: 8px; } /* centrada con la barra de progreso */
+      .step-indicator-bar { margin-right: 44px; }
 
       /* Etiquetas pequeñas: mínimo 12px */
       .badge-pill, .panel-badge, .dot-badge, .brand-sub { font-size: 12px; }
