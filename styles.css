@@ -1549,12 +1549,13 @@ header { view-transition-name: site-header; }
 ::view-transition-group(top-bar),
 ::view-transition-group(site-header) { animation-duration: 200ms; }
 
-/* Sale rápido hacia arriba; la nueva entra subiendo, un poco más pausada */
-::view-transition-old(root) { animation: page-out 150ms cubic-bezier(0.23, 1, 0.32, 1) both; }
-::view-transition-new(root) { animation: page-in 260ms cubic-bezier(0.23, 1, 0.32, 1) 40ms both; }
+/* Casi en secuencia: la actual se retira hacia arriba y, cuando ya casi se fue,
+   la nueva sube a su lugar. Si se cruzaran a la vez, dos páginas claras se fundirían y no se notaría. */
+::view-transition-old(root) { animation: page-out 220ms cubic-bezier(0.23, 1, 0.32, 1) both; }
+::view-transition-new(root) { animation: page-in 420ms cubic-bezier(0.23, 1, 0.32, 1) 140ms both; }
 
-@keyframes page-out { to { opacity: 0; transform: translateY(-6px); } }
-@keyframes page-in { from { opacity: 0; transform: translateY(10px); } }
+@keyframes page-out { to { opacity: 0; transform: translateY(-16px) scale(0.985); } }
+@keyframes page-in { from { opacity: 0; transform: translateY(28px) scale(0.99); } }
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root) { animation: page-fade-out 150ms ease both; }
