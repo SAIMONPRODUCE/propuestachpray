@@ -40,6 +40,20 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent; /* sin destello gris al tocar: cada control tiene su :active */
+  -webkit-text-size-adjust: 100%; /* sin agrandar letra al girar el celular */
+}
+
+/* Respuesta inmediata al toque (sin espera de doble toque) y sin seleccionar el texto de los controles */
+button, a, summary, [role="button"] { touch-action: manipulation; }
+button, summary {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* iOS hace zoom en campos con letra menor a 16px; también en tabletas */
+@media (pointer: coarse) {
+  .form-input, .form-select, .form-textarea { font-size: 16px; }
 }
 
 body {
@@ -227,8 +241,8 @@ section[id] {
   box-shadow: 0 2px 6px rgba(62, 123, 102, 0.25);
 }
 
-.btn-primary:hover {
-  background: var(--primary-hover);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover { background: var(--primary-hover); }
 }
 
 .btn-secondary {
@@ -237,9 +251,8 @@ section[id] {
   border-color: var(--border);
 }
 
-.btn-secondary:hover {
-  background: var(--surface-subtle);
-  border-color: #D5E2DA;
+@media (hover: hover) and (pointer: fine) {
+  .btn-secondary:hover { background: var(--surface-subtle); border-color: #D5E2DA; }
 }
 
 .btn-gold {
@@ -247,8 +260,8 @@ section[id] {
   color: #FFFFFF;
 }
 
-.btn-gold:hover {
-  background: var(--accent-hover);
+@media (hover: hover) and (pointer: fine) {
+  .btn-gold:hover { background: var(--accent-hover); }
 }
 
 /* HERO */
@@ -866,8 +879,8 @@ footer {
   transition: color 0.15s ease;
 }
 
-.footer-links a:hover {
-  color: #FFFFFF;
+@media (hover: hover) and (pointer: fine) {
+  .footer-links a:hover { color: #FFFFFF; }
 }
 
 .footer-bottom {
@@ -1410,7 +1423,9 @@ footer {
 }
 
 .breadcrumb a { color: var(--primary-text); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+@media (hover: hover) and (pointer: fine) {
+  .breadcrumb a:hover { text-decoration: underline; text-underline-offset: 3px; }
+}
 
 .page-section {
   max-width: 1200px;

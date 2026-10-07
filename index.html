@@ -500,22 +500,22 @@
           <form onsubmit="handleDirectContact(event)">
             <div class="form-group">
               <label for="dirName">Nombre y Cargo:</label>
-              <input type="text" class="form-input" id="dirName" placeholder="Ej. Dra. Marcela Reyes - Directora Médica / Compras" required>
+              <input type="text" class="form-input" id="dirName" autocomplete="name" placeholder="Ej. Dra. Marcela Reyes - Directora Médica / Compras" required>
             </div>
 
             <div class="form-group">
               <label for="dirCompany">Empresa, Clínica o Restaurante:</label>
-              <input type="text" class="form-input" id="dirCompany" placeholder="Ej. Hospital Universitario / Grupo Gastronómico" required>
+              <input type="text" class="form-input" id="dirCompany" autocomplete="organization" placeholder="Ej. Hospital Universitario / Grupo Gastronómico" required>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
               <div class="form-group">
                 <label for="dirEmail">Correo Electrónico:</label>
-                <input type="email" class="form-input" id="dirEmail" placeholder="contacto@institucion.com" required>
+                <input type="email" class="form-input" id="dirEmail" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="contacto@institucion.com" required>
               </div>
               <div class="form-group">
                 <label for="dirPhone">Teléfono de Contacto:</label>
-                <input type="tel" class="form-input" id="dirPhone" placeholder="315 000 0000" required>
+                <input type="tel" class="form-input" id="dirPhone" autocomplete="tel" placeholder="315 000 0000" required>
               </div>
             </div>
 
@@ -656,22 +656,22 @@
 
         <div class="form-group">
           <label for="contactName">Nombre y Cargo del Decisor:</label>
-          <input type="text" class="form-input" id="contactName" placeholder="Ej. Dra. Camila Gómez - Jefe de Nutrición" required>
+          <input type="text" class="form-input" id="contactName" autocomplete="name" placeholder="Ej. Dra. Camila Gómez - Jefe de Nutrición" required>
         </div>
 
         <div class="form-group">
           <label for="contactCompany">Empresa, Clínica o Institución:</label>
-          <input type="text" class="form-input" id="contactCompany" placeholder="Ej. Clínica San Lucas IPS" required>
+          <input type="text" class="form-input" id="contactCompany" autocomplete="organization" placeholder="Ej. Clínica San Lucas IPS" required>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <label for="contactEmail">Correo Corporativo:</label>
-            <input type="email" class="form-input" id="contactEmail" placeholder="compras@empresa.com" required>
+            <input type="email" class="form-input" id="contactEmail" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="compras@empresa.com" required>
           </div>
           <div class="form-group">
             <label for="contactPhone">Teléfono / Celular:</label>
-            <input type="tel" class="form-input" id="contactPhone" placeholder="310 000 0000" required>
+            <input type="tel" class="form-input" id="contactPhone" autocomplete="tel" placeholder="310 000 0000" required>
           </div>
         </div>
 
