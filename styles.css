@@ -1734,3 +1734,109 @@ header { view-transition-name: site-header; }
   .article-cta div { flex-direction: column; }
   .article-cta .btn { width: 100%; }
 }
+
+/* ===== TEMA CÁLIDO (por ahora solo en el inicio: <body class="theme-warm">) ===== */
+.theme-warm {
+  --bg: #F4F2EC;          /* hueso cálido: las tarjetas blancas se separan del fondo */
+  --band-sage: #EAF1EC;   /* salvia muy suave para secciones alternas */
+  --wheat: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="20 30 60 52"%3E%3Cg fill="%23000" stroke="%23000" stroke-width="2" stroke-linecap="round"%3E%3Cpath fill="none" d="M48 78 L32 40"/%3E%3Cpath fill="none" d="M52 78 L68 40"/%3E%3C/g%3E%3Cg fill="%23000"%3E%3Cpath d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z"/%3E%3Cpath d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z"/%3E%3Cpath d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z"/%3E%3Cpath d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z"/%3E%3Cpath d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z"/%3E%3Cpath d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z"/%3E%3Cpath d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z"/%3E%3Cpath d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z"/%3E%3Cpath d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z"/%3E%3Cpath d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z"/%3E%3C/g%3E%3C/svg%3E');
+}
+
+/* Bandas a todo el ancho sin cambiar el contenedor de 1200 px:
+   la sombra extiende el color a los lados y clip-path recorta arriba y abajo */
+.theme-warm .tabs-section,
+.theme-warm .trust-matrix {
+  margin: 0 auto;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  background: var(--band);
+  box-shadow: 0 0 0 100vmax var(--band);
+  clip-path: inset(0 -100vmax);
+}
+
+.theme-warm .tabs-section { --band: var(--band-sage); }
+.theme-warm .proteins-section { margin-top: 72px; }
+
+/* Inocuidad en azul abisal: corta la página en dos y da peso a la sección de confianza */
+.theme-warm .trust-matrix { --band: var(--navy); }
+.theme-warm .trust-matrix .section-title-wrap h2 { color: #FFFFFF; }
+.theme-warm .trust-matrix .section-title-wrap p { color: #A9BBC2; }
+.theme-warm .trust-matrix .matrix-card { border-color: transparent; }
+
+/* Sello de espigas del logo: decorativo, monocromo, 5–7 % y nunca detrás de texto largo */
+.theme-warm .hero,
+.theme-warm .contact-info-pane,
+.theme-warm footer {
+  position: relative;
+  isolation: isolate;
+}
+
+.theme-warm .contact-info-pane,
+.theme-warm footer { overflow: hidden; }
+
+/* El sello del hero sobresale a la derecha: clip lo recorta sin crear scroll horizontal
+   (a diferencia de overflow: hidden, no rompe el encabezado fijo) */
+.theme-warm main { overflow-x: clip; }
+
+.theme-warm .hero::before,
+.theme-warm .contact-info-pane::after,
+.theme-warm footer::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask: var(--wheat) center / contain no-repeat;
+  mask: var(--wheat) center / contain no-repeat;
+}
+
+/* Detrás de la tarjeta del hero: asoma por los bordes, no toca el titular */
+.theme-warm .hero::before {
+  width: 560px;
+  aspect-ratio: 60 / 52;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary);
+  opacity: 0.07;
+}
+
+.theme-warm .contact-info-pane::after {
+  width: 280px;
+  aspect-ratio: 60 / 52;
+  right: -60px;
+  bottom: -40px;
+  background: #FFFFFF;
+  opacity: 0.05;
+}
+
+.theme-warm footer::after {
+  width: 360px;
+  aspect-ratio: 60 / 52;
+  right: -40px;
+  bottom: -60px;
+  background: #FFFFFF;
+  opacity: 0.04;
+}
+
+/* Íconos de línea (reemplazan emojis e íconos de texto) */
+.matrix-icon svg,
+.contact-item-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  /* La tarjeta del hero baja: el sello la acompaña abajo a la derecha */
+  .theme-warm .hero::before { width: 380px; top: auto; bottom: 16px; transform: none; right: -90px; }
+}
+
+@media (max-width: 640px) {
+  .theme-warm .tabs-section,
+  .theme-warm .trust-matrix { padding-top: 48px; padding-bottom: 48px; margin: 0 auto; }
+  .theme-warm .proteins-section { margin-top: 48px; }
+}
