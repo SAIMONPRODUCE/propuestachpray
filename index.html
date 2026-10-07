@@ -12,8 +12,8 @@
   <meta property="og:title" content="Alimentación Institucional y Catering Corporativo en Bogotá | C.H. Pray">
   <meta property="og:description" content="Dietas hospitalarias, catering para empresas y proteínas al vacío para restaurantes en Bogotá.">
   <meta property="og:url" content="https://saimonproduce.github.io/propuestachpray/">
-  <meta name="theme-color" content="#7F1D1D">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%237F1D1D'/%3E%3Ctext x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='%23E5C378' text-anchor='middle'%3ECH%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#1A2F3B">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231A2F3B'/%3E%3Ctext x='50' y='66' font-size='46' font-family='Arial' font-weight='700' fill='%23F7F9F6' text-anchor='middle'%3ECH%3C/text%3E%3C/svg%3E">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,20 +41,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #F8F9FA;
+      /* Paleta: Azul Abisal, Verde Salvia, Terracota, Eucalipto, Hueso */
+      --bg: #F7F9F6;
       --surface: #FFFFFF;
-      --surface-subtle: #F1F3F5;
-      --border: #E5E7EB;
-      --border-focus: #C8963E;
-      --text-main: #111827;
-      --text-muted: #4B5563;
-      --text-light: #9CA3AF;
-      --crimson: #8B1E1E;
-      --crimson-hover: #731818;
-      --crimson-subtle: #FDF2F2;
-      --gold: #C8963E;
-      --gold-subtle: #FDF8ED;
-      --dark-card: #18191D;
+      --surface-subtle: #EEF3EF;
+      --border: #DDE5E0;
+      --border-focus: #3E7B66;
+      --text-main: #1A2F3B;
+      --text-muted: #4A5B63;
+      --text-light: #8A979D;
+      --primary: #3E7B66;
+      --primary-hover: #336654;
+      --primary-text: #336654;
+      --primary-subtle: #EEF5F1;
+      --accent: #B4573F;
+      --accent-hover: #9A4834;
+      --accent-light: #D97D64;
+      --accent-subtle: #FBEEE9;
+      --eucalyptus: #B8CFC2;
+      --navy: #1A2F3B;
+      --navy-soft: #24414F;
+      --dark-card: #1A2F3B;
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 20px;
@@ -93,14 +100,14 @@
 
     /* BARRA SUPERIOR */
     .top-bar {
-      background: #111827;
-      color: #D1D5DB;
+      background: var(--navy);
+      color: #D5E2DA;
       font-size: 13px;
       padding: 8px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #1F2937;
+      border-bottom: 1px solid var(--navy-soft);
     }
 
     .top-bar-tags {
@@ -113,8 +120,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(200, 150, 62, 0.15);
-      color: #E5C378;
+      background: var(--accent-subtle);
+      color: var(--accent-hover);
       padding: 2px 8px;
       border-radius: 999px;
       font-size: 11px;
@@ -126,7 +133,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #E5C378;
+      background: var(--accent);
     }
 
     /* HEADER */
@@ -187,7 +194,7 @@
     }
 
     nav a:hover {
-      color: var(--crimson);
+      color: var(--primary-text);
     }
 
     .header-actions {
@@ -219,13 +226,13 @@
     }
 
     .btn-primary {
-      background: var(--crimson);
+      background: var(--primary);
       color: #FFFFFF;
-      box-shadow: 0 2px 6px rgba(139, 30, 30, 0.25);
+      box-shadow: 0 2px 6px rgba(62, 123, 102, 0.25);
     }
 
     .btn-primary:hover {
-      background: var(--crimson-hover);
+      background: var(--primary-hover);
     }
 
     .btn-secondary {
@@ -236,16 +243,16 @@
 
     .btn-secondary:hover {
       background: var(--surface-subtle);
-      border-color: #D1D5DB;
+      border-color: #D5E2DA;
     }
 
     .btn-gold {
-      background: var(--gold);
+      background: var(--accent);
       color: #FFFFFF;
     }
 
     .btn-gold:hover {
-      background: #B68430;
+      background: var(--accent-hover);
     }
 
     /* HERO */
@@ -263,8 +270,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--crimson-subtle);
-      color: var(--crimson);
+      background: var(--primary-subtle);
+      color: var(--primary-text);
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
@@ -278,11 +285,11 @@
       font-size: 42px;
       line-height: 1.18;
       margin-bottom: 20px;
-      color: #0F172A;
+      color: var(--navy);
     }
 
     .hero h1 span {
-      color: var(--crimson);
+      color: var(--primary-text);
     }
 
     .hero p {
@@ -310,7 +317,7 @@
     .trust-item h4 {
       font-size: 17px;
       font-weight: 800;
-      color: var(--crimson);
+      color: var(--primary-text);
     }
 
     .trust-item p {
@@ -343,7 +350,7 @@
       gap: 6px;
       font-size: 12px;
       font-weight: 600;
-      color: #059669;
+      color: #047857;
     }
 
     .dot-badge::before {
@@ -355,9 +362,9 @@
     }
 
     .badge-gold-outline {
-      border: 1px solid var(--gold);
-      color: #92641A;
-      background: var(--gold-subtle);
+      border: 1px solid var(--accent);
+      color: var(--accent-hover);
+      background: var(--accent-subtle);
       font-size: 11px;
       font-weight: 600;
       padding: 3px 8px;
@@ -476,16 +483,16 @@
     .panel-content h3 {
       font-size: 26px;
       margin-bottom: 12px;
-      color: #0F172A;
+      color: var(--navy);
     }
 
     .panel-badge {
       display: inline-block;
       font-size: 11px;
       font-weight: 700;
-      color: var(--gold);
-      background: var(--gold-subtle);
-      border: 1px solid rgba(200, 150, 62, 0.3);
+      color: var(--accent-hover);
+      background: var(--accent-subtle);
+      border: 1px solid rgba(217, 125, 100, 0.35);
       padding: 3px 8px;
       border-radius: 6px;
       margin-bottom: 12px;
@@ -513,13 +520,13 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 14px;
-      color: #374151;
+      color: #35505E;
     }
 
     .specs-list li svg {
       width: 18px;
       height: 18px;
-      fill: var(--crimson);
+      fill: var(--primary);
       flex-shrink: 0;
       margin-top: 2px;
     }
@@ -561,9 +568,9 @@
     }
 
     .diet-tag.highlight {
-      border-color: var(--gold);
-      background: var(--gold-subtle);
-      color: #87570F;
+      border-color: var(--accent-hover);
+      background: var(--accent-subtle);
+      color: var(--accent-hover);
     }
 
     /* SECCION ESPECIFICA: PROTEINAS AL VACIO */
@@ -632,7 +639,7 @@
 
     .calc-slider {
       width: 100%;
-      accent-color: var(--crimson);
+      accent-color: var(--primary-text);
       cursor: pointer;
     }
 
@@ -655,7 +662,7 @@
     .calc-metric-num {
       font-size: 26px;
       font-weight: 800;
-      color: var(--crimson);
+      color: var(--primary-text);
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
@@ -684,7 +691,7 @@
     }
 
     .contact-info-pane {
-      background: #111827;
+      background: var(--navy);
       color: #FFFFFF;
       padding: 48px;
       display: flex;
@@ -699,7 +706,7 @@
     }
 
     .contact-info-pane p {
-      color: #9CA3AF;
+      color: #A9BBC2;
       font-size: 15px;
       line-height: 1.6;
       margin-bottom: 32px;
@@ -722,8 +729,8 @@
       width: 38px;
       height: 38px;
       border-radius: 8px;
-      background: #1F2937;
-      color: #C8963E;
+      background: var(--navy-soft);
+      color: var(--accent-light);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -738,7 +745,7 @@
     }
 
     .contact-item p {
-      color: #9CA3AF;
+      color: #A9BBC2;
       font-size: 13px;
       margin-bottom: 0;
     }
@@ -783,8 +790,8 @@
       width: 40px;
       height: 40px;
       border-radius: 10px;
-      background: var(--crimson-subtle);
-      color: var(--crimson);
+      background: var(--primary-subtle);
+      color: var(--primary-text);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -805,10 +812,10 @@
 
     /* FOOTER */
     footer {
-      background: #111827;
-      color: #9CA3AF;
+      background: var(--navy);
+      color: #A9BBC2;
       padding: 60px 24px 30px;
-      border-top: 1px solid #1F2937;
+      border-top: 1px solid var(--navy-soft);
     }
 
     .footer-grid {
@@ -818,7 +825,7 @@
       grid-template-columns: 1.5fr 1fr 1fr 1fr;
       gap: 40px;
       padding-bottom: 40px;
-      border-bottom: 1px solid #1F2937;
+      border-bottom: 1px solid var(--navy-soft);
     }
 
     .footer-col h5 {
@@ -835,7 +842,7 @@
     }
 
     .footer-links a {
-      color: #9CA3AF;
+      color: #A9BBC2;
       text-decoration: none;
       font-size: 13px;
       transition: color 0.15s ease;
@@ -851,7 +858,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      color: #6B7280;
+      color: #8A979D;
     }
 
     /* FORMULARIOS Y MODALES */
@@ -886,7 +893,7 @@
 
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       border-color: var(--border-focus);
-      box-shadow: 0 0 0 3px rgba(200, 150, 62, 0.18);
+      box-shadow: 0 0 0 3px rgba(62, 123, 102, 0.2);
     }
 
     .modal-overlay {
@@ -895,7 +902,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(17, 24, 39, 0.6);
+      background: rgba(26, 47, 59, 0.6);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       z-index: 100;
@@ -961,7 +968,7 @@
     }
 
     .step-tick.active {
-      background: var(--crimson);
+      background: var(--primary);
     }
 
     .wizard-step {
@@ -988,8 +995,8 @@
     }
 
     .selectable-card.selected {
-      border-color: var(--crimson);
-      background: var(--crimson-subtle);
+      border-color: var(--primary-text);
+      background: var(--primary-subtle);
     }
 
     @media (max-width: 900px) {
@@ -1007,6 +1014,9 @@
       .top-bar { padding: 6px 16px; justify-content: center; }
       .top-bar > div:last-child, .brand-sub { display: none; }
     }
+    .top-bar .badge-pill { background: rgba(217, 125, 100, 0.18); color: #F0B3A2; }
+    .top-bar .badge-pill::before { background: #F0B3A2; }
+    .contact-item a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
   </style>
 </head>
 <body>
@@ -1026,21 +1036,21 @@
   <header>
     <a href="#" class="brand-wrap">
       <svg class="brand-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="48" fill="#0C0D0E" stroke="#8B1E1E" stroke-width="3"/>
-        <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#1F2430" stroke-width="2" fill="none"/>
-        <rect x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#8B1E1E" stroke-width="1.5" fill="none"/>
-        <path d="M48 78 L32 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
-        <path d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#C8963E"/>
-        <path d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#C8963E"/>
-        <path d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#C8963E"/>
-        <path d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#C8963E"/>
-        <path d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#C8963E"/>
-        <path d="M52 78 L68 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
-        <path d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#C8963E"/>
-        <path d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#C8963E"/>
-        <path d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#C8963E"/>
-        <path d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#C8963E"/>
-        <path d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#C8963E"/>
+        <circle cx="50" cy="50" r="48" fill="#1A2F3B" stroke="#1A2F3B" stroke-width="3"/>
+        <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#F7F9F6" stroke-opacity="0.3" stroke-width="2" fill="none"/>
+        <rect x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#F7F9F6" stroke-opacity="0.6" stroke-width="1.5" fill="none"/>
+        <path d="M48 78 L32 40" stroke="#F7F9F6" stroke-width="2" stroke-linecap="round"/>
+        <path d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#F7F9F6"/>
+        <path d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#F7F9F6"/>
+        <path d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#F7F9F6"/>
+        <path d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#F7F9F6"/>
+        <path d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#F7F9F6"/>
+        <path d="M52 78 L68 40" stroke="#F7F9F6" stroke-width="2" stroke-linecap="round"/>
+        <path d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#F7F9F6"/>
+        <path d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#F7F9F6"/>
+        <path d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#F7F9F6"/>
+        <path d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#F7F9F6"/>
+        <path d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#F7F9F6"/>
       </svg>
       <div>
         <span class="brand-title">C.H. PRAY</span>
@@ -1111,7 +1121,7 @@
         </div>
         <div class="info-row">
           <span>Control de Temperatura</span>
-          <span style="color: #059669;">Caliente &gt; 65°C / Cadena &lt; 4°C</span>
+          <span style="color: #047857;">Caliente &gt; 65°C / Cadena &lt; 4°C</span>
         </div>
         <div class="info-row">
           <span>Rotulado Individual</span>
@@ -1184,7 +1194,7 @@
               </div>
             </div>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
-              <strong style="color: var(--crimson);">Garantía Documental:</strong> Planillas de control de lotes, fichas técnicas de gramaje y documentación sanitaria disponibles para su comité. <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
+              <strong style="color: var(--primary-text);">Garantía Documental:</strong> Planillas de control de lotes, fichas técnicas de gramaje y documentación sanitaria disponibles para su comité. <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
             </div>
           </div>
         </div>
@@ -1228,7 +1238,7 @@
               </div>
             </div>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
-              <strong style="color: var(--crimson);">Puntualidad:</strong> Despacho propio en Bogotá con horarios de entrega acordados en el contrato.
+              <strong style="color: var(--primary-text);">Puntualidad:</strong> Despacho propio en Bogotá con horarios de entrega acordados en el contrato.
             </div>
           </div>
         </div>
@@ -1270,7 +1280,7 @@
               <span class="diet-tag">Bondiola Cerdo (200g)</span>
             </div>
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
-              <strong style="color: var(--crimson);">Entrega en Frío:</strong> Despacho programado con registro de temperatura en transporte.
+              <strong style="color: var(--primary-text);">Entrega en Frío:</strong> Despacho programado con registro de temperatura en transporte.
             </div>
           </div>
         </div>
@@ -1347,7 +1357,7 @@
           <div class="calc-slider-wrap">
             <label>
               <span>Consumo semanal de proteína:</span>
-              <span id="kgLabel" style="color: var(--crimson); font-size: 16px;">80 kg</span>
+              <span id="kgLabel" style="color: var(--primary-text); font-size: 16px;">80 kg</span>
             </label>
             <input type="range" min="20" max="400" step="10" value="80" class="calc-slider" id="kgSlider" oninput="calculateSavings(this.value)">
           </div>
@@ -1450,7 +1460,7 @@
           </div>
 
           <div style="background: rgba(255,255,255,0.06); padding: 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 13px;">
-            <strong style="color: #C8963E;">Visitas de Auditoría:</strong> Coordinamos visitas guiadas para jefes de compras y comités de nutrición interesados en verificar nuestras instalaciones y registros sanitarios.
+            <strong style="color: var(--accent-light);">Visitas de Auditoría:</strong> Coordinamos visitas guiadas para jefes de compras y comités de nutrición interesados en verificar nuestras instalaciones y registros sanitarios.
           </div>
         </div>
 
@@ -1635,10 +1645,10 @@
     <div class="footer-grid">
       <div class="footer-col">
         <h5 style="color: #FFFFFF; font-size: 16px; margin-bottom: 8px;">CATERING C.H. PRAY S.A.S.</h5>
-        <p style="font-size: 13px; color: #9CA3AF; margin-bottom: 16px; line-height: 1.5;">
+        <p style="font-size: 13px; color: #A9BBC2; margin-bottom: 16px; line-height: 1.5;">
           Soluciones integrales de alimentación institucional, dietas hospitalarias, casinos corporativos y proteínas empacadas al vacío con sede en Bogotá.
         </p>
-        <span class="badge-pill" style="background: rgba(200, 150, 62, 0.2); color: #E5C378;">
+        <span class="badge-pill" style="background: rgba(217, 125, 100, 0.2); color: #F0B3A2;">
           NIT 901.815.422-7
         </span>
       </div>
@@ -1669,7 +1679,7 @@
         <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="openQuoteModal('cotizacion')">
           Solicitar Cotización Formal
         </button>
-        <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #374151; color: #D1D5DB; background: #1F2937;">
+        <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #35505E; color: #D5E2DA; background: var(--navy-soft);">
           Ver Sede y Ubicación
         </a>
       </div>
