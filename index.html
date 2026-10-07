@@ -1064,17 +1064,22 @@
       z-index: 60;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 6px 16px 6px 6px;
+      gap: 10px;
+      padding: 4px 14px 4px 4px;
       border-radius: 999px;
-      background: rgba(26, 47, 59, 0.92);
-      -webkit-backdrop-filter: blur(12px) saturate(140%);
-      backdrop-filter: blur(12px) saturate(140%);
+      /* Vidrio líquido: translúcido, con desenfoque y saturación del fondo.
+         Opacidad mínima 72% para que el texto azul cumpla contraste incluso sobre secciones oscuras. */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.72) 100%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08),
-        0 0 0 1px rgba(26, 47, 59, 0.12),
-        0 12px 32px -8px rgba(26, 47, 59, 0.45);
-      color: #FFFFFF;
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(26, 47, 59, 0.06),
+        0 0 0 0.5px rgba(26, 47, 59, 0.12),
+        0 8px 24px -6px rgba(26, 47, 59, 0.22),
+        0 2px 6px -2px rgba(26, 47, 59, 0.1);
+      color: var(--navy);
       text-decoration: none;
       opacity: 0;
       transform: translateY(8px) scale(0.96);
@@ -1094,8 +1099,8 @@
     .wa-float-icon {
       display: grid;
       place-items: center;
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: linear-gradient(180deg, #2BDC6E 0%, #25D366 55%, #1FB855 100%); /* verde oficial de WhatsApp */
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 4px 12px -2px rgba(37, 211, 102, 0.45);
@@ -1103,7 +1108,7 @@
       flex-shrink: 0;
     }
 
-    .wa-float-icon svg { width: 24px; height: 24px; }
+    .wa-float-icon svg { width: 20px; height: 20px; }
 
     .wa-float-text {
       display: flex;
@@ -1112,23 +1117,35 @@
     }
 
     .wa-float-kicker {
-      font-size: 11px;
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--eucalyptus);
+      color: var(--navy);
+      opacity: 0.75;
+    }
+
+    .wa-float-kicker::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #25D366;
     }
 
     .wa-float-label {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
     }
 
     .wa-float-arrow {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       margin-left: 2px;
-      color: var(--eucalyptus);
+      color: var(--primary-text);
       transition: transform 160ms ease-out;
     }
 
@@ -1142,6 +1159,10 @@
     }
 
     .wa-float:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .wa-float { background: rgba(255, 255, 255, 0.96); }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .wa-float, .wa-float.visible, .wa-float.visible:active { transform: none; transition: opacity 200ms ease; }
@@ -1214,7 +1235,7 @@
       .badge-pill, .panel-badge, .dot-badge, .brand-sub { font-size: 12px; }
 
       /* WhatsApp flotante: solo el ícono, 56px */
-      .wa-float { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); padding: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .wa-float { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); padding: 0; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
       .wa-float-text, .wa-float-arrow { display: none; }
       .wa-float-icon {
         width: 56px;
