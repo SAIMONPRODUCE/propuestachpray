@@ -354,12 +354,13 @@ function resetContactForm(focus = true) {
   const btn = document.getElementById('waFloat');
   const heroCtas = document.querySelector('.hero-ctas');
   const form = document.querySelector('.contact-form-pane');
-  if (!btn || !heroCtas || !form) return;
-  // Visible después de pasar los botones del inicio; oculto mientras el formulario ocupa la pantalla
+  if (!btn) return;
+  // Visible después de pasar los botones del inicio (o 400 px en páginas sin ellos, como las guías);
+  // oculto mientras el formulario ocupa la pantalla
   function update() {
-    const pastHero = heroCtas.getBoundingClientRect().bottom < 0;
-    const f = form.getBoundingClientRect();
-    const onForm = f.top < window.innerHeight * 0.75 && f.bottom > window.innerHeight * 0.25;
+    const pastHero = heroCtas ? heroCtas.getBoundingClientRect().bottom < 0 : window.scrollY > 400;
+    const f = form && form.getBoundingClientRect();
+    const onForm = !!f && f.top < window.innerHeight * 0.75 && f.bottom > window.innerHeight * 0.25;
     btn.classList.toggle('visible', pastHero && !onForm);
   }
   window.addEventListener('scroll', update, { passive: true });
