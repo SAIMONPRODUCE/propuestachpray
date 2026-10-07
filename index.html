@@ -1025,14 +1025,30 @@
     }
 
     .step-tick {
+      position: relative;
+      overflow: hidden;
       height: 4px;
       flex: 1;
-      background: #E5E7EB;
+      background: var(--border);
       border-radius: 2px;
     }
 
-    .step-tick.active {
+    /* El segmento se llena de izquierda a derecha */
+    .step-tick::after {
+      content: "";
+      position: absolute;
+      inset: 0;
       background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 300ms var(--ease-in-out);
+    }
+
+    .step-tick.active::after { transform: scaleX(1); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step-tick::after { transition: none; }
+      .selectable-card, .card-check { transition: opacity 150ms ease, border-color 150ms ease, background-color 150ms ease; transform: none; }
     }
 
     .wizard-step {
@@ -1130,18 +1146,54 @@
     }
 
     .selectable-card {
+      position: relative;
+      width: 100%;
+      font: inherit;
+      color: inherit;
+      text-align: left;
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 12px;
+      padding: 12px 34px 12px 12px;
       border-radius: var(--radius-sm);
       cursor: pointer;
-      transition: border-color 0.15s ease, background 0.15s ease;
+      transition: border-color 150ms ease, background-color 150ms ease, transform 100ms ease-out;
       user-select: none;
     }
+
+    @media (hover: hover) and (pointer: fine) {
+      .selectable-card:not(.selected):hover { border-color: rgba(62, 123, 102, 0.45); }
+    }
+
+    .selectable-card:active { transform: scale(0.97); }
+
+    .selectable-card:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
     .selectable-card.selected {
       border-color: var(--primary-text);
       background: var(--primary-subtle);
     }
+
+    .selectable-card h5 { font-size: 15px; font-weight: 700; margin-bottom: 2px; color: var(--text-main); }
+    .selectable-card p { font-size: 13px; line-height: 1.4; color: var(--text-muted); }
+
+    .card-check {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 150ms ease-out, transform 200ms var(--smooth-easing);
+    }
+
+    .card-check svg { width: 12px; height: 12px; fill: none; stroke: #FFFFFF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .selectable-card.selected .card-check { opacity: 1; transform: none; }
 
     @media (max-width: 900px) {
       .hero, .proteins-grid, .contact-layout, .tab-panel.active {
@@ -1939,22 +1991,26 @@
         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Elija la línea y le asignamos un asesor técnico.</p>
         
         <div class="option-grid" style="margin-bottom: 24px;">
-          <div class="selectable-card selected" onclick="selectService(this, 'Hospitalario')">
+          <button type="button" class="selectable-card selected" aria-pressed="true" onclick="selectService(this, 'Hospitalario')">
+            <span class="card-check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg></span>
             <h5>Línea Hospitalaria</h5>
             <p>Clínicas, IPS, centros de salud</p>
-          </div>
-          <div class="selectable-card" onclick="selectService(this, 'Corporativo')">
+          </button>
+          <button type="button" class="selectable-card" aria-pressed="false" onclick="selectService(this, 'Corporativo')">
+            <span class="card-check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg></span>
             <h5>Casino Empresarial</h5>
             <p>Almuerzos y refrigerios diarios</p>
-          </div>
-          <div class="selectable-card" onclick="selectService(this, 'Evento')">
+          </button>
+          <button type="button" class="selectable-card" aria-pressed="false" onclick="selectService(this, 'Evento')">
+            <span class="card-check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg></span>
             <h5>Eventos y Asados</h5>
             <p>Jornadas al aire libre y reuniones</p>
-          </div>
-          <div class="selectable-card" onclick="selectService(this, 'Proteínas')">
+          </button>
+          <button type="button" class="selectable-card" aria-pressed="false" onclick="selectService(this, 'Proteínas')">
+            <span class="card-check" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 8.5l2.5 2.5L12 5.5"/></svg></span>
             <h5>Proteínas al Vacío</h5>
             <p>Cortes porcionados para restaurantes</p>
-          </div>
+          </button>
         </div>
 
         <button class="btn btn-primary" style="width: 100%;" onclick="goToStep(2)">Continuar al siguiente paso →</button>
@@ -2163,7 +2219,13 @@
     function openQuoteModal(initialType) {
       const modal = document.getElementById('quoteModal');
       modal.classList.add('active');
-      goToStep(1);
+      goToStep(1, false);
+      if (!prefersReducedMotion.matches) {
+        document.querySelectorAll('#step-1 .selectable-card').forEach((card, i) => card.animate(
+          [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }],
+          { duration: 250, delay: 60 + i * 40, easing: stepEase, fill: 'backwards' }
+        ));
+      }
     }
 
     function closeQuoteModal() {
@@ -2175,22 +2237,57 @@
       if (e.target.id === 'quoteModal') closeQuoteModal();
     }
 
-    function goToStep(stepNumber) {
-      document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
-      document.querySelectorAll('.step-tick').forEach(tick => tick.classList.remove('active'));
+    // Transición entre pasos: avanzar sale a la izquierda y entra desde la derecha; retroceder, al revés
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const stepEase = 'cubic-bezier(0.23, 1, 0.32, 1)';
+    let stepTransition = null;
 
-      const target = document.getElementById(`step-${stepNumber}`);
-      if (target) target.classList.add('active');
-
-      for (let i = 1; i <= stepNumber; i++) {
-        const tick = document.getElementById(`tick-${i}`);
-        if (tick) tick.classList.add('active');
+    function swapStep(target, dir, animate = true) {
+      if (stepTransition) { // interrumpible: corta la anterior sin ejecutar su final pendiente
+        stepTransition.onfinish = null;
+        stepTransition.cancel();
+        stepTransition = null;
       }
+      const current = document.querySelector('.wizard-step.active');
+      const show = () => {
+        document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
+        target.classList.add('active');
+      };
+      if (!animate || !current || current === target) { show(); return; }
+
+      const reduce = prefersReducedMotion.matches;
+      const out = current.animate(
+        reduce ? [{ opacity: 1 }, { opacity: 0 }]
+               : [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: `translateX(${-12 * dir}px)` }],
+        { duration: 120, easing: 'ease-out' }
+      );
+      stepTransition = out;
+      out.onfinish = () => {
+        show();
+        stepTransition = target.animate(
+          reduce ? [{ opacity: 0 }, { opacity: 1 }]
+                 : [{ opacity: 0, transform: `translateX(${16 * dir}px)` }, { opacity: 1, transform: 'none' }],
+          { duration: 220, easing: stepEase }
+        );
+        stepTransition.onfinish = () => { stepTransition = null; };
+      };
+    }
+
+    function goToStep(stepNumber, animate = true) {
+      const current = document.querySelector('.wizard-step.active');
+      const currentNum = parseInt((current && current.id.split('-')[1]) || '0', 10) || 0;
+      const target = document.getElementById(`step-${stepNumber}`);
+      if (!target) return;
+      swapStep(target, stepNumber >= currentNum ? 1 : -1, animate);
+
+      document.querySelectorAll('.step-tick').forEach((tick, i) => tick.classList.toggle('active', i < stepNumber));
     }
 
     function selectService(element, serviceName) {
-      document.querySelectorAll('.selectable-card').forEach(card => card.classList.remove('selected'));
-      element.classList.add('selected');
+      document.querySelectorAll('.selectable-card').forEach(card => {
+        card.classList.toggle('selected', card === element);
+        card.setAttribute('aria-pressed', card === element);
+      });
       selectedServiceName = serviceName;
     }
 
@@ -2256,8 +2353,7 @@
 
     // Cambia de paso sin tocar la barra de progreso (que ya está completa en el paso 3)
     function showWizardStep(id) {
-      document.querySelectorAll('.wizard-step').forEach(step => step.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+      swapStep(document.getElementById(id), id === 'step-3' ? -1 : 1);
     }
 
     async function handleDirectContact(e) {
