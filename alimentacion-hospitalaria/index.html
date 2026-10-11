@@ -107,7 +107,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=10">
+  <link rel="stylesheet" href="../styles.css?v=21">
 </head>
 <body class="theme-warm" data-service="Hospitalario">
 
@@ -162,6 +162,96 @@
   </header>
 
   <main>
+    <!-- TODO: imágenes generadas con IA para el recorrido; reemplazar por fotos reales de la planta y de hospitalización -->
+    <div class="journey-bg" aria-hidden="true">
+      <video class="journey-video" muted playsinline preload="auto" poster="../assets/hospital/paso-1-fachada.jpg">
+        <source src="../assets/hospital/recorrido-scroll-1080.mp4" type="video/mp4">
+      </video>
+      <div class="journey-imgs">
+        <img class="journey-img" src="../assets/hospital/paso-1-fachada.jpg" alt="" width="2000" height="1116" decoding="async">
+        <img class="journey-img" src="../assets/hospital/paso-2-pasillo.jpg" alt="" width="2000" height="1116" loading="lazy" decoding="async">
+        <img class="journey-img" src="../assets/hospital/paso-3-cocina.jpg" alt="" width="2000" height="1116" loading="lazy" decoding="async">
+        <img class="journey-img" src="../assets/hospital/paso-4-bandeja.jpg" alt="" width="2000" height="1116" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <script>
+      // Móvil: las 4 imágenes se funden con el scroll (sin video, sin 3D)
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth > 640) return;
+        document.body.classList.add('has-journey');
+        var imgs = document.querySelectorAll('.journey-img');
+        var n = imgs.length, current = 0, running = false;
+        function tick() {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          var q = Math.min(Math.max(window.scrollY / max, 0), 1) * (n - 1);
+          current += (q - current) * 0.15;
+          imgs.forEach(function (el, i) {
+            var o = i === 0 ? 1 : Math.min(Math.max(current - (i - 1), 0), 1);
+            el.style.opacity = o;
+            el.style.transform = 'scale(' + (1.1 - 0.1 * o).toFixed(3) + ')';
+          });
+          if (Math.abs(q - current) > 0.002) { requestAnimationFrame(tick); } else { running = false; }
+        }
+        function update() { if (!running) { running = true; requestAnimationFrame(tick); } }
+        window.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
+      })();
+    </script>
+    <script>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth <= 640) return;
+        document.body.classList.add('has-journey');
+        var video = document.querySelector('.journey-video');
+        var sections;
+        var target = 0, current = 0, running = false;
+        var lastCurrent = 0, blur = 0;
+        // Motion blur: el video se difumina según la velocidad del scroll (BLUR_K = px por segundo de video por frame; BLUR_MAX = tope en px)
+        var BLUR_K = 80, BLUR_MAX = 6;
+        function progress() {
+          var max = document.documentElement.scrollHeight - window.innerHeight;
+          return Math.min(Math.max(window.scrollY / max, 0), 1);
+        }
+        function sections3d() {
+          sections.forEach(function (el) {
+            var r = el.getBoundingClientRect();
+            var d = Math.max(-1, Math.min(1, (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight));
+            el.style.transform = 'perspective(1400px) rotateX(' + (-d * 2).toFixed(2) + 'deg) translateZ(' + (-Math.abs(d) * 40).toFixed(0) + 'px)';
+            if (!el.classList.contains('band-sage') && !el.classList.contains('band-navy')) {
+              el.style.opacity = (1 - Math.abs(d) * 0.1).toFixed(2);
+            }
+          });
+        }
+        function tick() {
+          var p = progress();
+          target = p * (video.duration || 0);
+          current += (target - current) * 0.12;
+          var speed = Math.abs(current - lastCurrent);
+          lastCurrent = current;
+          blur += (Math.min(speed * BLUR_K, BLUR_MAX) - blur) * 0.25;
+          video.style.filter = blur > 0.05 ? 'blur(' + blur.toFixed(2) + 'px)' : 'none';
+          if (video.duration && !video.seeking && Math.abs(video.currentTime - current) > 0.001) {
+            if (video.fastSeek) { video.fastSeek(current); } else { video.currentTime = current; }
+          }
+          sections3d();
+          if (Math.abs(target - current) > 0.01 || video.seeking) {
+            requestAnimationFrame(tick);
+          } else {
+            running = false;
+            blur = 0;
+            video.style.filter = 'none';
+          }
+        }
+        function update() {
+          if (!sections) return;
+          if (!running) { running = true; requestAnimationFrame(tick); }
+        }
+        video.addEventListener('seeked', function () { if (running) return; update(); });
+        window.addEventListener('scroll', function () { requestAnimationFrame(update); }, { passive: true });
+        window.addEventListener('resize', update);
+        window.addEventListener('load', function () { sections = document.querySelectorAll('main > section, main > .hero'); video.load(); update(); });
+      })();
+    </script>
     <!-- HERO -->
     <section class="hero">
       <div>

@@ -1838,8 +1838,63 @@ header { view-transition-name: site-header; }
   .theme-warm .hero::before { width: 380px; top: auto; bottom: 16px; transform: none; right: -90px; }
 }
 
+/* Sello del hero girando en 3D (solo escritorio; con movimiento reducido queda quieto) */
+@keyframes sello-giro {
+  from { transform: translateY(-50%) rotateY(0deg); }
+  to { transform: translateY(-50%) rotateY(360deg); }
+}
+
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .theme-warm .hero::before { animation: sello-giro 16s linear infinite; }
+}
+
 @media (max-width: 640px) {
   .theme-warm .band-sage,
   .theme-warm .band-navy { padding-top: 48px; padding-bottom: 48px; margin: 0 auto; }
   .theme-warm .proteins-section { margin-top: 48px; }
+}
+
+/* EFECTO 3D DE PÁGINA COMPLETA (alimentación hospitalaria): el fondo fijo es el video del recorrido y las secciones se inclinan apenas con el scroll */
+.journey-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: var(--navy); pointer-events: none; }
+.journey-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Todos los paneles son tarjetas redondeadas con espacio entre sí: el video se asoma por los huecos */
+.has-journey main > section {
+  border-radius: var(--radius-lg);
+  margin-top: 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(12px);
+}
+.has-journey main > .hero { background-color: rgba(244, 242, 236, 0.97); padding-top: 56px; padding-bottom: 48px; }
+.has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) {
+  background-color: rgba(244, 242, 236, 0.97);
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+/* Las bandas dejan de ser de ancho completo para poder redondearse */
+.has-journey main > section.band-sage,
+.has-journey main > section.band-navy {
+  box-shadow: none;
+  clip-path: none;
+}
+
+.journey-imgs { display: none; }
+
+@media (max-width: 640px) {
+  .journey-video { display: none; }
+  .journey-imgs { display: block; position: absolute; inset: 0; }
+  .journey-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; will-change: transform, opacity; }
+  .journey-img:first-child { opacity: 1; }
+  .has-journey main > section,
+  .has-journey main > section.band-sage,
+  .has-journey main > section.band-navy { margin: 12px; backdrop-filter: blur(8px); }
+  /* Paneles más translúcidos en móvil para que la imagen del recorrido se vea (ajusta el 0.78 si se pierde lectura) */
+  .has-journey main > .hero,
+  .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { background-color: rgba(244, 242, 236, 0.78); }
+  .has-journey main > section.band-sage { background-color: rgba(234, 241, 236, 0.78); }
+  .has-journey main > section.band-navy { background-color: rgba(26, 47, 59, 0.82); }
+  .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { padding-top: 32px; padding-bottom: 32px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-bg { display: none; }
 }
