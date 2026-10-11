@@ -7,14 +7,14 @@
   --border-focus: #3E7B66;
   --text-main: #1A2F3B;
   --text-muted: #4A5B63;
-  --text-light: #8A979D;
+  --text-light: #5E6D74;
   --primary: #3E7B66;
   --primary-hover: #336654;
   --primary-text: #336654;
   --primary-subtle: #EEF5F1;
   --accent: #B4573F;
   --accent-hover: #9A4834;
-  --accent-light: #D97D64;
+  --accent-light: #F0A18B;
   --accent-subtle: #FBEEE9;
   --eucalyptus: #B8CFC2;
   --navy: #1A2F3B;
@@ -889,7 +889,7 @@ footer {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: #8A979D;
+  color: var(--text-light);
 }
 
 /* FORMULARIOS Y MODALES */
@@ -1174,6 +1174,9 @@ footer {
   }
   .trust-strip, .matrix-grid, .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .matrix-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
   nav {
     display: none;
