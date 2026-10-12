@@ -64,8 +64,9 @@ function getSheet_() {
   return sheet;
 }
 
-// Recorta el texto y evita que Sheets lo interprete como fórmula (=, +, -, @).
+// Recorta el texto y evita que Sheets (o un CSV exportado) lo interprete como fórmula:
+// =, +, -, @ y también tabulación o salto de línea al inicio.
 function clean_(value) {
   const text = String(value || '').slice(0, MAX_LEN);
-  return /^[=+\-@]/.test(text) ? "'" + text : text;
+  return /^[=+\-@\t\r\n]/.test(text) ? "'" + text : text;
 }
