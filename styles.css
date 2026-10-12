@@ -830,6 +830,7 @@ button.diet-tag:focus-visible { outline: 2px solid var(--primary); outline-offse
   margin-bottom: 18px;
 }
 
+.matrix-card h3,
 .matrix-card h4 {
   font-size: 18px;
   margin-bottom: 8px;
@@ -1910,4 +1911,35 @@ header { view-transition-name: site-header; }
   color: #8F2D1A;
   font-size: 14px;
   line-height: 1.45;
+}
+
+/* Inocuidad y garantías: una tarjeta principal y dos apoyos en lista, en lugar de tres tarjetas iguales */
+.matrix-grid--feature { grid-template-columns: 1.25fr 1fr; grid-template-rows: auto auto; gap: 8px 56px; align-items: start; }
+.matrix-grid--feature .matrix-card:first-child { grid-row: 1 / span 2; padding: 40px; }
+.matrix-grid--feature .matrix-card:first-child .matrix-icon { width: 56px; height: 56px; border-radius: 14px; margin-bottom: 28px; }
+.matrix-grid--feature .matrix-card:first-child h3,
+.matrix-grid--feature .matrix-card:first-child h4 { font-size: 26px; line-height: 1.15; margin-bottom: 14px; }
+.matrix-grid--feature .matrix-card:first-child p { font-size: 16px; line-height: 1.6; }
+.band-navy .matrix-grid--feature .matrix-card:not(:first-child) {
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  border-top: 1px solid rgba(169, 187, 194, 0.28);
+  border-radius: 0;
+  padding: 28px 0 12px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 18px;
+  align-items: start;
+}
+.band-navy .matrix-grid--feature .matrix-card:not(:first-child) .matrix-icon { grid-row: 1 / span 2; margin-bottom: 0; background: rgba(255, 255, 255, 0.08); color: var(--accent-light); }
+.band-navy .matrix-grid--feature .matrix-card:not(:first-child) h3,
+.band-navy .matrix-grid--feature .matrix-card:not(:first-child) h4 { color: #FFFFFF; margin-bottom: 6px; }
+.band-navy .matrix-grid--feature .matrix-card:not(:first-child) p { color: #A9BBC2; }
+
+@media (max-width: 900px) {
+  .matrix-grid--feature { grid-template-columns: 1fr; gap: 16px; }
+  .matrix-grid--feature .matrix-card:first-child { grid-row: auto; padding: 28px; }
+  .matrix-grid--feature .matrix-card:first-child h3,
+  .matrix-grid--feature .matrix-card:first-child h4 { font-size: 22px; }
 }
