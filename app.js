@@ -500,3 +500,35 @@ document.addEventListener('keydown', (e) => {
     if (entry.isIntersecting) { play(); } else { cancelAnimationFrame(frame); setAll(0); }
   }, { threshold: 0.6 }).observe(figure);
 })();
+
+
+// 6. TERMÓMETROS DE LA CADENA TÉRMICA (página de alimentación hospitalaria)
+// Al entrar en pantalla el mercurio sube hasta el límite de cada rango (65 °C mínimo en caliente, 4 °C máximo en frío);
+// no son lecturas, son los límites que la página promete. Sin JS o con movimiento reducido se ven completos.
+(function () {
+  const pair = document.getElementById('thermoPair');
+  if (!pair || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const nums = [...pair.querySelectorAll('.thermo')].map(t => ({ el: t.querySelector('.thermo-num'), level: Number(t.dataset.level) }));
+  const RISE_MS = 1600;
+  let frame = 0;
+
+  function setProgress(p) {
+    pair.style.setProperty('--p', p.toFixed(3));
+    nums.forEach(n => { n.el.textContent = Math.round(n.level * p); });
+  }
+
+  function play() {
+    cancelAnimationFrame(frame);
+    const start = performance.now();
+    (function tick(now) {
+      const t = Math.min((now - start) / RISE_MS, 1);
+      setProgress(1 - Math.pow(1 - t, 3));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    })(start);
+  }
+
+  setProgress(0);
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) { play(); } else { cancelAnimationFrame(frame); setProgress(0); }
+  }, { threshold: 0.6 }).observe(pair);
+})();

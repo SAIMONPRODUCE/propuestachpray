@@ -107,7 +107,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=29">
+  <link rel="stylesheet" href="../styles.css?v=31">
 </head>
 <body class="theme-warm" data-service="Hospitalario">
 
@@ -417,6 +417,28 @@
           <div class="tray-label-note">Datos de ejemplo</div>
         </div>
       </figure>
+    </section>
+
+    <section class="page-section thermo-section" id="temperatura" aria-labelledby="termoTitulo">
+      <div class="thermo-copy">
+        <h2 id="termoTitulo">La temperatura se controla hasta la entrega</h2>
+        <p>Cajas isotérmicas de grado alimenticio y termómetros calibrados mantienen caliente lo caliente y frío lo frío, con registro de temperatura en la recepción.</p>
+      </div>
+      <div class="thermo-wrap">
+        <div class="thermo-pair" id="thermoPair" role="img" aria-label="Termómetros en escala de 0 a 100 grados: lo caliente se mantiene por encima de 65 grados y lo frío por debajo de 4 grados">
+          <div class="thermo thermo-hot" data-level="65">
+            <div class="thermo-tube"><div class="thermo-fill"></div><span class="thermo-mark"></span></div>
+            <div class="thermo-bulb"></div>
+            <div class="thermo-read"><strong><span class="thermo-num">65</span> °C</strong><span>Caliente, mínimo</span></div>
+          </div>
+          <div class="thermo thermo-cold" data-level="4">
+            <div class="thermo-tube"><div class="thermo-fill"></div><span class="thermo-mark"></span></div>
+            <div class="thermo-bulb"></div>
+            <div class="thermo-read"><strong><span class="thermo-num">4</span> °C</strong><span>Frío, máximo</span></div>
+          </div>
+        </div>
+        <p class="thermo-note">Escala de 0 a 100 °C. La línea marca el límite de cada rango.</p>
+      </div>
     </section>
 
     <!-- GARANTÍAS -->
@@ -817,6 +839,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=13"></script>
+  <script src="../app.js?v=14"></script>
 </body>
 </html>
