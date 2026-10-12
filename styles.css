@@ -12,10 +12,10 @@
   --primary-hover: #336654;
   --primary-text: #336654;
   --primary-subtle: #EEF5F1;
-  --accent: #B4573F;
-  --accent-hover: #9A4834;
-  --accent-light: #F0A18B;
-  --accent-subtle: #FBEEE9;
+  --accent: #3E7B66;
+  --accent-hover: #336654;
+  --accent-light: #A9D4C2;
+  --accent-subtle: #EEF5F1;
   --eucalyptus: #B8CFC2;
   --navy: #1A2F3B;
   --navy-soft: #24414F;
@@ -501,7 +501,7 @@ section[id] {
   font-weight: 700;
   color: var(--accent-hover);
   background: var(--accent-subtle);
-  border: 1px solid rgba(217, 125, 100, 0.35);
+  border: 1px solid rgba(62, 123, 102, 0.35);
   padding: 3px 8px;
   border-radius: 6px;
   margin-bottom: 12px;
@@ -889,7 +889,7 @@ footer {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: var(--text-light);
+  color: #8FA3AB;
 }
 
 /* FORMULARIOS Y MODALES */
@@ -1186,8 +1186,8 @@ footer {
   .top-bar { padding: 6px 16px; justify-content: center; }
   .top-bar > div:last-child, .brand-sub { display: none; }
 }
-.top-bar .badge-pill { background: rgba(217, 125, 100, 0.18); color: #F0B3A2; }
-.top-bar .badge-pill::before { background: #F0B3A2; }
+.top-bar .badge-pill { background: rgba(62, 123, 102, 0.28); color: #A9D4C2; }
+.top-bar .badge-pill::before { background: #A9D4C2; }
 .contact-item a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
 /* BOTÓN FLOTANTE DE WHATSAPP */
@@ -1742,8 +1742,8 @@ header { view-transition-name: site-header; }
 
 /* ===== TEMA CÁLIDO (por ahora solo en el inicio: <body class="theme-warm">) ===== */
 .theme-warm {
-  --bg: #F4F2EC;          /* hueso cálido: las tarjetas blancas se separan del fondo */
-  --band-sage: #EAF1EC;   /* salvia muy suave para secciones alternas */
+  --bg: #F3F6F4;          /* gris-verdoso muy claro: las tarjetas blancas se separan del fondo */
+  --band-sage: #E1ECE6;   /* salvia suave para secciones alternas */
   --wheat: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="20 30 60 52"%3E%3Cg fill="%23000" stroke="%23000" stroke-width="2" stroke-linecap="round"%3E%3Cpath fill="none" d="M48 78 L32 40"/%3E%3Cpath fill="none" d="M52 78 L68 40"/%3E%3C/g%3E%3Cg fill="%23000"%3E%3Cpath d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z"/%3E%3Cpath d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z"/%3E%3Cpath d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z"/%3E%3Cpath d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z"/%3E%3Cpath d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z"/%3E%3Cpath d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z"/%3E%3Cpath d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z"/%3E%3Cpath d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z"/%3E%3Cpath d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z"/%3E%3Cpath d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z"/%3E%3C/g%3E%3C/svg%3E');
 }
 
@@ -1866,9 +1866,9 @@ header { view-transition-name: site-header; }
   margin-bottom: 24px;
   backdrop-filter: blur(12px);
 }
-.has-journey main > .hero { background-color: rgba(244, 242, 236, 0.97); padding-top: 56px; padding-bottom: 48px; }
+.has-journey main > .hero { background-color: rgba(243, 246, 244, 0.97); padding-top: 56px; padding-bottom: 48px; }
 .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) {
-  background-color: rgba(244, 242, 236, 0.97);
+  background-color: rgba(243, 246, 244, 0.97);
   padding-top: 48px;
   padding-bottom: 48px;
 }
@@ -1891,8 +1891,8 @@ header { view-transition-name: site-header; }
   .has-journey main > section.band-navy { margin: 12px; backdrop-filter: blur(8px); }
   /* Paneles más translúcidos en móvil para que la imagen del recorrido se vea (ajusta el 0.78 si se pierde lectura) */
   .has-journey main > .hero,
-  .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { background-color: rgba(244, 242, 236, 0.78); }
-  .has-journey main > section.band-sage { background-color: rgba(234, 241, 236, 0.78); }
+  .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { background-color: rgba(243, 246, 244, 0.78); }
+  .has-journey main > section.band-sage { background-color: rgba(225, 236, 230, 0.78); }
   .has-journey main > section.band-navy { background-color: rgba(26, 47, 59, 0.82); }
   .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { padding-top: 32px; padding-bottom: 32px; }
 }
