@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5 {
   color: var(--accent-hover);
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -146,7 +146,7 @@ header {
 }
 
 .brand-sub {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted);
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -374,7 +374,7 @@ section[id] {
   border: 1px solid var(--accent);
   color: var(--accent-hover);
   background: var(--accent-subtle);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   padding: 3px 8px;
   border-radius: 6px;
@@ -497,7 +497,7 @@ section[id] {
 
 .panel-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--accent-hover);
   background: var(--accent-subtle);
@@ -1269,7 +1269,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1390,9 +1390,6 @@ footer {
   .modal-window { padding: 24px 20px; }
   .modal-close-btn { width: 44px; height: 44px; top: 4px; right: 8px; } /* centrada con la barra de progreso */
   .step-indicator-bar { margin-right: 44px; }
-
-  /* Etiquetas pequeñas: mínimo 12px */
-  .badge-pill, .panel-badge, .dot-badge, .brand-sub { font-size: 12px; }
 
   /* WhatsApp flotante: solo el ícono, 56px */
   .wa-float { right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); padding: 0; background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
