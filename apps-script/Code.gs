@@ -10,6 +10,9 @@ const SHEET_NAME = 'Solicitudes';
 const COLUMNS = ['fecha', 'origen', 'servicio', 'volumen', 'modalidad', 'nombre', 'empresa',
                  'correo', 'telefono', 'mensaje', 'pagina', 'estado', 'proxima_accion'];
 const MAX_LEN = 1000;
+const MAX_PER_WINDOW = 30;   // solicitudes aceptadas por ventana, entre todos los visitantes
+const WINDOW_SECONDS = 600;  // ventana de 10 minutos (la cuenta se renueva con cada solicitud nueva)
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 // Ejecutar una vez desde el editor (botón ▶ con "setup" seleccionado) para preparar la hoja.
 function setup() {
@@ -21,14 +24,35 @@ function setup() {
 
 function doPost(e) {
   const p = (e && e.parameter) || {};
-  if (!p.nombre || !p.correo) return ContentService.createTextOutput('faltan datos');
+  // Campo trampa: un bot lo llena, una persona no. Se responde "ok" sin guardar para no darle pistas.
+  if (p.hp_control) return ContentService.createTextOutput('ok');
+  if (!p.nombre || !EMAIL_RE.test(String(p.correo || '').trim())) return ContentService.createTextOutput('faltan datos');
 
-  const row = COLUMNS.map(c => {
-    if (c === 'fecha') return new Date();
-    if (c === 'estado') return 'Nuevo';
-    return clean_(p[c]);
-  });
-  getSheet_().appendRow(row);
+  // La URL del script es pública: se limita cuántas solicitudes entran por ventana de tiempo
+  // y se ignoran los envíos repetidos (mismo correo y mensaje), para que nadie llene la hoja
+  // ni dispare cientos de avisos por correo.
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const cache = CacheService.getScriptCache();
+    const count = Number(cache.get('count') || 0);
+    if (count >= MAX_PER_WINDOW) return ContentService.createTextOutput('limite');
+
+    const digest = Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, String(p.correo).trim().toLowerCase() + '|' + (p.mensaje || ''));
+    const dupKey = 'dup_' + Utilities.base64EncodeWebSafe(digest);
+    if (cache.get(dupKey)) return ContentService.createTextOutput('ok'); // ya estaba guardada
+    cache.put(dupKey, '1', WINDOW_SECONDS);
+    cache.put('count', String(count + 1), WINDOW_SECONDS);
+
+    const row = COLUMNS.map(c => {
+      if (c === 'fecha') return new Date();
+      if (c === 'estado') return 'Nuevo';
+      return clean_(p[c]);
+    });
+    getSheet_().appendRow(row);
+  } finally {
+    lock.releaseLock();
+  }
 
   return ContentService.createTextOutput('ok');
 }

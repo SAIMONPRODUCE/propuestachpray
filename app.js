@@ -242,10 +242,10 @@ function showWizardStep(id) {
 
 async function handleDirectContact(e) {
   e.preventDefault();
-  if (document.getElementById('dirHp').value) return; // bot
   if (!validateFields(['dirName', 'dirCompany', 'dirEmail', 'dirPhone'])) return;
   const val = id => document.getElementById(id).value.trim();
   const data = {
+    hp_control: document.getElementById('dirHp').value, // campo trampa: el servidor descarta el envío si viene lleno
     origen: 'Formulario de contacto',
     servicio: val('dirService'),
     nombre: val('dirName'),
