@@ -115,7 +115,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=12">
+  <link rel="stylesheet" href="../styles.css?v=23">
 </head>
 <body class="theme-warm" data-service="Corporativo">
 
@@ -164,8 +164,8 @@
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Solicitar Muestra</button>
-      <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Cotizar<span class="hide-narrow"> Servicio</span></button>
+      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Pedir degustación</button>
+      <button class="btn btn-primary" onclick="openQuoteModal('corporativo')"><span class="hide-narrow">Solicitar cotización</span><span class="show-narrow">Cotizar</span></button>
     </div>
   </header>
 
@@ -184,10 +184,10 @@
 
         <div class="hero-ctas">
           <button class="btn btn-primary" style="padding: 12px 24px; font-size: 15px;" onclick="openQuoteModal('corporativo')">
-            Cotizar Catering Corporativo
+            Solicitar cotización
           </button>
           <button class="btn btn-secondary" style="padding: 12px 20px; font-size: 15px;" onclick="openQuoteModal('degustacion')">
-            Coordinar Degustación sin Costo
+            Pedir degustación
           </button>
         </div>
 
@@ -237,7 +237,7 @@
           <span>Bogotá D.C.</span>
         </div>
         <button class="btn btn-gold" style="width: 100%; margin-top: 10px;" onclick="openQuoteModal('degustacion')">
-          Agendar Degustación para su Equipo
+          Pedir degustación
         </button>
       </div>
     </section>
@@ -705,7 +705,7 @@
       <div class="footer-col">
         <h5>Atención comercial</h5>
         <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="openQuoteModal('cotizacion')">
-          Solicitar Cotización Formal
+          Solicitar cotización
         </button>
         <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #35505E; color: #D5E2DA; background: var(--navy-soft);">
           Ver Sede y Ubicación
@@ -719,6 +719,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=10"></script>
+  <script src="../app.js?v=11"></script>
 </body>
 </html>

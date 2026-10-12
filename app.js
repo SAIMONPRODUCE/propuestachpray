@@ -162,8 +162,27 @@ function setVolumeUnit(unit) {
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzABpnrJ8M3dhe4O5cvdX5WrZblN36VCl01jvAU70st2SI7_w18i6ug3PbxeP2Pnc-L/exec';
 const WHATSAPP = '573126156192';
 
+const SEND_ERROR = 'No pudimos confirmar el registro de su solicitud. Intente de nuevo o escríbanos por WhatsApp al 312 615 6192.';
+
+// Error en línea, junto al botón de envío: no tapa la página como un alert() y lo leen los lectores de pantalla.
+function showFormError(btn, message) {
+  let box = btn.parentElement.querySelector('.form-error');
+  if (!box) {
+    box = document.createElement('p');
+    box.className = 'form-error';
+    box.setAttribute('role', 'alert');
+    btn.parentElement.insertBefore(box, btn);
+  }
+  box.textContent = message;
+}
+
+function clearFormError(btn) {
+  btn.parentElement.querySelector('.form-error')?.remove();
+}
+
 async function sendLead(data, btn) {
   const label = btn.textContent;
+  clearFormError(btn);
   btn.disabled = true;
   btn.textContent = 'Enviando...';
   try {
@@ -177,7 +196,7 @@ async function sendLead(data, btn) {
     if ((await res.text()).trim() !== 'ok') throw new Error('La hoja no confirmó el registro');
     return true;
   } catch (err) {
-    alert('No pudimos confirmar el registro de su solicitud. Por favor intente de nuevo o escríbanos por WhatsApp al 312 615 6192.');
+    showFormError(btn, SEND_ERROR);
     return false;
   } finally {
     btn.disabled = false;

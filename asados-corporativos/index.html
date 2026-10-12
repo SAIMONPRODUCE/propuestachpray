@@ -107,7 +107,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=12">
+  <link rel="stylesheet" href="../styles.css?v=23">
 </head>
 <body class="theme-warm" data-service="Evento">
 
@@ -156,8 +156,8 @@
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Solicitar Muestra</button>
-      <button class="btn btn-primary" onclick="openQuoteModal('evento')">Cotizar<span class="hide-narrow"> Servicio</span></button>
+      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Pedir degustación</button>
+      <button class="btn btn-primary" onclick="openQuoteModal('evento')"><span class="hide-narrow">Solicitar cotización</span><span class="show-narrow">Cotizar</span></button>
     </div>
   </header>
 
@@ -176,7 +176,7 @@
 
         <div class="hero-ctas">
           <button class="btn btn-primary" style="padding: 12px 24px; font-size: 15px;" onclick="openQuoteModal('evento')">
-            Cotizar Asado o Evento
+            Solicitar cotización
           </button>
           <a class="btn btn-secondary" style="padding: 12px 20px; font-size: 15px;" href="https://wa.me/573126156192?text=Hola%2C%20quisiera%20cotizar%20un%20asado%20para%20mi%20empresa." target="_blank" rel="noopener">
             Consultar Fecha por WhatsApp
@@ -692,7 +692,7 @@
       <div class="footer-col">
         <h5>Atención comercial</h5>
         <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="openQuoteModal('cotizacion')">
-          Solicitar Cotización Formal
+          Solicitar cotización
         </button>
         <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #35505E; color: #D5E2DA; background: var(--navy-soft);">
           Ver Sede y Ubicación
@@ -706,6 +706,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=10"></script>
+  <script src="../app.js?v=11"></script>
 </body>
 </html>

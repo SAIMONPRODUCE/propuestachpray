@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=23">
 </head>
 <body class="theme-warm">
 
@@ -90,8 +90,8 @@
     </nav>
 
     <div class="header-actions">
-      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Solicitar Muestra</button>
-      <button class="btn btn-primary" onclick="openQuoteModal('cotizacion')">Cotizar<span class="hide-narrow"> Servicio</span></button>
+      <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Pedir degustación</button>
+      <button class="btn btn-primary" onclick="openQuoteModal('cotizacion')"><span class="hide-narrow">Solicitar cotización</span><span class="show-narrow">Cotizar</span></button>
     </div>
   </header>
 
@@ -107,7 +107,7 @@
 
         <div class="hero-ctas">
           <button class="btn btn-primary" style="padding: 12px 24px; font-size: 15px;" onclick="openQuoteModal('cotizacion')">
-            Solicitar Cotización Formal
+            Solicitar cotización
           </button>
           <a class="btn btn-secondary" style="padding: 12px 20px; font-size: 15px;" href="https://wa.me/573126156192?text=Hola,%20solicito%20el%20dossier%20comercial%20de%20CH%20Pray" target="_blank" rel="noopener">
             WhatsApp Directo
@@ -156,7 +156,7 @@
           <span>Cra. 24D #3-27, Bogotá</span>
         </div>
         <button class="btn btn-gold" style="width: 100%; margin-top: 10px;" onclick="openQuoteModal('degustacion')">
-          Agendar Degustación para Comité Técnico
+          Pedir degustación
         </button>
       </div>
     </section>
@@ -201,8 +201,8 @@
               </li>
             </ul>
             <div style="display: flex; gap: 12px;">
-              <button class="btn btn-primary" onclick="openQuoteModal('clinico')">Cotizar Línea Hospitalaria</button>
-              <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Coordinar Degustación sin Costo</button>
+              <button class="btn btn-primary" onclick="openQuoteModal('clinico')">Solicitar cotización</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('degustacion')">Pedir degustación</button>
             </div>
             <a href="alimentacion-hospitalaria/" style="display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--primary-text); text-underline-offset: 3px;">Ver dietas, proceso y preguntas frecuentes de la línea clínica →</a>
           </div>
@@ -248,8 +248,8 @@
               </li>
             </ul>
             <div style="display: flex; gap: 12px;">
-              <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Cotizar Casino Corporativo</button>
-              <button class="btn btn-secondary" onclick="openQuoteModal('evento')">Cotizar Evento / Asado</button>
+              <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Solicitar cotización</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('evento')">Solicitar cotización</button>
             </div>
             <a href="catering-corporativo/" style="display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--primary-text); text-underline-offset: 3px;">Ver modalidades, proceso y preguntas frecuentes del catering corporativo →</a>
           </div>
@@ -295,7 +295,7 @@
             </ul>
             <div style="display: flex; gap: 12px;">
               <a href="#vacío" class="btn btn-primary">Ver Catálogo Completo y Simulador</a>
-              <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir Muestra</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir muestra</button>
             </div>
             <a href="proteinas-al-vacio/" style="display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--primary-text); text-underline-offset: 3px;">Ver catálogo, proceso y preguntas frecuentes de proteínas al vacío →</a>
           </div>
@@ -372,8 +372,8 @@
           <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Vida útil de referencia; se confirma en la ficha técnica de cada lote.</p> <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
 
           <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button class="btn btn-primary" style="flex: 1;" onclick="openQuoteModal('vacío')">Solicitar Lista de Precios B2B</button>
-            <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir Muestra de Prueba</button>
+            <button class="btn btn-primary" style="flex: 1;" onclick="openQuoteModal('vacío')">Solicitar cotización</button>
+            <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir muestra</button>
           </div>
         </div>
 
@@ -757,7 +757,7 @@
       <div class="footer-col">
         <h5>Atención comercial</h5>
         <button class="btn btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="openQuoteModal('cotizacion')">
-          Solicitar Cotización Formal
+          Solicitar cotización
         </button>
         <a href="#contacto" class="btn btn-secondary" style="width: 100%; border-color: #35505E; color: #D5E2DA; background: var(--navy-soft);">
           Ver Sede y Ubicación
@@ -772,6 +772,6 @@
   </footer>
 
   <!-- SCRIPT -->
-  <script src="app.js?v=10"></script>
+  <script src="app.js?v=11"></script>
 </body>
 </html>

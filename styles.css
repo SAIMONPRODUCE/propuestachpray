@@ -1611,9 +1611,11 @@ header { view-transition-name: site-header; }
 /* Celulares muy angostos (iPhone SE, 320 px) */
 /* El texto se une al de "Cotizar" como un solo bloque: sin el hueco que el botón pone entre elementos */
 .btn .hide-narrow { display: contents; }
+.btn .show-narrow { display: none; }
 
 @media (max-width: 360px) {
-  .btn .hide-narrow { display: none; } /* "Cotizar Servicio" → "Cotizar": la marca conserva su espacio */
+  .btn .hide-narrow { display: none; } /* "Solicitar cotización" → "Cotizar": la marca conserva su espacio */
+  .btn .show-narrow { display: contents; }
   .option-grid { grid-template-columns: 1fr; } /* dos columnas de 120 px cortan las tarjetas del cotizador */
 }
 
@@ -1897,4 +1899,15 @@ header { view-transition-name: site-header; }
 
 @media (prefers-reduced-motion: reduce) {
   .journey-bg { display: none; }
+}
+
+/* Error de envío en línea (junto al botón de enviar) */
+.form-error {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: #FDECE8;
+  color: #8F2D1A;
+  font-size: 14px;
+  line-height: 1.45;
 }
