@@ -466,3 +466,37 @@ document.addEventListener('keydown', (e) => {
     bar.classList.remove('active');
   });
 })();
+
+
+// 5. LA BANDEJA QUE SE ROTULA SOLA (página de alimentación hospitalaria)
+// Al entrar la foto en pantalla, cada dato del rótulo se "escribe" solo, uno tras otro; si sale de pantalla se borra
+// y vuelve a escribirse al regresar. Sin JS o con movimiento reducido el rótulo se ve completo.
+(function () {
+  const figure = document.getElementById('trayFigure');
+  if (!figure || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const values = [...figure.querySelectorAll('.tray-row dd span')];
+  const WRITE_MS = 750;  // lo que tarda en escribirse cada dato
+  const GAP_MS = 550;    // pausa entre un dato y el siguiente
+  let frame = 0;
+
+  const setAll = t => values.forEach(el => el.style.setProperty('--t', t));
+
+  function play() {
+    cancelAnimationFrame(frame);
+    const start = performance.now();
+    const total = (values.length - 1) * GAP_MS + WRITE_MS;
+    (function tick(now) {
+      const elapsed = now - start;
+      values.forEach((el, i) => {
+        const t = Math.min(Math.max((elapsed - i * GAP_MS) / WRITE_MS, 0), 1);
+        el.style.setProperty('--t', (1 - Math.pow(1 - t, 2)).toFixed(3));
+      });
+      if (elapsed < total) frame = requestAnimationFrame(tick);
+    })(start);
+  }
+
+  setAll(0);
+  new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) { play(); } else { cancelAnimationFrame(frame); setAll(0); }
+  }, { threshold: 0.6 }).observe(figure);
+})();

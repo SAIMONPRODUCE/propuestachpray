@@ -107,7 +107,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=27">
+  <link rel="stylesheet" href="../styles.css?v=29">
 </head>
 <body class="theme-warm" data-service="Hospitalario">
 
@@ -396,6 +396,27 @@
           <p>Transporte en cajas isotérmicas y registro de temperatura en la recepción.</p>
         </li>
       </ol>
+    </section>
+
+    <!-- TODO: la foto de la bandeja es generada con IA; reemplazar por una foto real de la planta. Los datos del rótulo son un ejemplo ilustrativo. -->
+    <section class="page-section tray-section" id="rotulado" aria-labelledby="rotuladoTitulo">
+      <div class="tray-copy">
+        <h2 id="rotuladoTitulo">Cada bandeja sale identificada</h2>
+        <p>Cama, paciente, dieta y hora de preparación: la información de cada prescripción viaja con la bandeja hasta la habitación.</p>
+      </div>
+      <figure class="tray-figure" id="trayFigure">
+        <img src="../assets/hospital/paso-4-bandeja.jpg" alt="Bandeja hospitalaria sellada con su rótulo" width="2000" height="1116" loading="lazy" decoding="async">
+        <div class="tray-label" role="group" aria-label="Ejemplo de rótulo de bandeja">
+          <div class="tray-label-title">Rótulo de bandeja</div>
+          <dl>
+            <div class="tray-row"><dt>Cama</dt><dd><span>204-B</span></dd></div>
+            <div class="tray-row"><dt>Paciente</dt><dd><span>Alexander Tovar</span></dd></div>
+            <div class="tray-row"><dt>Dieta</dt><dd><span>Hiposódica estricta</span></dd></div>
+            <div class="tray-row"><dt>Preparada</dt><dd><span>11:40 a. m.</span></dd></div>
+          </dl>
+          <div class="tray-label-note">Datos de ejemplo</div>
+        </div>
+      </figure>
     </section>
 
     <!-- GARANTÍAS -->
@@ -796,6 +817,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=11"></script>
+  <script src="../app.js?v=13"></script>
 </body>
 </html>
