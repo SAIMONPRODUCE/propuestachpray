@@ -107,7 +107,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=32">
+  <link rel="stylesheet" href="../styles.css?v=33">
 </head>
 <body class="theme-warm" data-service="Hospitalario">
 
@@ -164,7 +164,7 @@
   <main>
     <!-- TODO: imágenes generadas con IA para el recorrido; reemplazar por fotos reales de la planta y de hospitalización -->
     <div class="journey-bg" aria-hidden="true">
-      <video class="journey-video" muted playsinline preload="auto" poster="../assets/hospital/paso-1-fachada.jpg">
+      <video class="journey-video" muted playsinline preload="none" poster="../assets/hospital/paso-1-fachada.jpg">
         <source src="../assets/hospital/recorrido-scroll-1080.mp4" type="video/mp4">
       </video>
       <div class="journey-imgs">
@@ -203,6 +203,9 @@
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth <= 640) return;
         document.body.classList.add('has-journey');
         var video = document.querySelector('.journey-video');
+        // El video (10 MB) solo se descarga en escritorio; en móvil queda en preload="none"
+        video.preload = 'auto';
+        video.load();
         var sections;
         var target = 0, current = 0, running = false;
         var lastCurrent = 0, blur = 0;
@@ -275,7 +278,7 @@
 
         <div class="trust-strip">
           <div class="trust-item">
-            <h4>5 Dietas</h4>
+            <h4>5 dietas</h4>
             <p>Prescripciones clínicas base</p>
           </div>
           <div class="trust-item">
@@ -287,7 +290,7 @@
             <p>Calor controlado en la entrega</p>
           </div>
           <div class="trust-item">
-            <h4>&lt; 48h</h4>
+            <h4>&lt; 48&nbsp;h</h4>
             <p>Propuesta formal para su comité</p>
           </div>
         </div>
@@ -839,6 +842,6 @@
     </div>
   </footer>
 
-  <script src="../app.js?v=14"></script>
+  <script src="../app.js?v=15"></script>
 </body>
 </html>

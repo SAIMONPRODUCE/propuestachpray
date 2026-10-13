@@ -61,6 +61,10 @@ function openQuoteModal(initialType) {
   if (initialType === 'degustacion' || initialType === 'muestra_carne') document.getElementById('quoteFrequency').value = 'muestra';
   modal.classList.add('active');
   goToStep(1, false);
+  // Diálogo modal: lo de atrás queda inerte (no se tabula ni se lee) y el foco entra a la ventana
+  quoteOpener = document.activeElement;
+  [...document.body.children].forEach(el => { if (el !== modal) el.inert = true; });
+  modal.querySelector('#step-1 .selectable-card.selected, #step-1 .selectable-card')?.focus({ preventScroll: true });
   if (!prefersReducedMotion.matches) {
     document.querySelectorAll('#step-1 .selectable-card').forEach((card, i) => card.animate(
       [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }],
@@ -69,10 +73,23 @@ function openQuoteModal(initialType) {
   }
 }
 
+let quoteOpener = null;
+
 function closeQuoteModal() {
   const modal = document.getElementById('quoteModal');
+  if (!modal.classList.contains('active')) return;
   modal.classList.remove('active');
+  [...document.body.children].forEach(el => { el.inert = false; });
+  quoteOpener?.focus({ preventScroll: true });
 }
+
+(() => {
+  const win = document.querySelector('#quoteModal .modal-window');
+  if (!win) return;
+  win.setAttribute('role', 'dialog');
+  win.setAttribute('aria-modal', 'true');
+  win.setAttribute('aria-label', 'Solicitar cotización');
+})();
 
 function closeModalOnBackdrop(e) {
   if (e.target.id === 'quoteModal') closeQuoteModal();
@@ -438,6 +455,33 @@ function resetContactForm(focus = true) {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeQuoteModal();
 });
+
+// MENÚ EN MÓVIL: en ≤900 px el nav se oculta; este botón lo despliega bajo la cabecera
+(() => {
+  const header = document.querySelector('header');
+  const nav = header?.querySelector('nav');
+  const actions = header?.querySelector('.header-actions');
+  if (!nav || !actions) return;
+  nav.id = 'site-nav';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'nav-toggle';
+  btn.setAttribute('aria-label', 'Menú');
+  btn.setAttribute('aria-controls', 'site-nav');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  actions.prepend(btn);
+  const setOpen = open => {
+    header.classList.toggle('nav-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  };
+  btn.addEventListener('click', () => setOpen(!header.classList.contains('nav-open')));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('click', e => { if (!header.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && header.classList.contains('nav-open')) { setOpen(false); btn.focus(); }
+  });
+})();
 
 // 9. BARRA DE PROGRESO AL CAMBIAR DE PÁGINA
 // La transición la hace el CSS (@view-transition). Esto solo da señal de vida

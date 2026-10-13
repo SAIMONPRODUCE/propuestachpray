@@ -1183,6 +1183,26 @@ footer {
     display: none;
   }
 }
+
+/* Menú en móvil: el botón lo crea app.js; despliega los enlaces del nav bajo la cabecera */
+.nav-toggle { display: none; }
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 44px; height: 44px; padding: 0; cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface); color: var(--text-main);
+  }
+  header.nav-open nav {
+    display: flex; flex-direction: column; align-items: stretch; gap: 0;
+    position: absolute; top: 100%; left: 0; right: 0;
+    padding: 4px 16px 8px; background: var(--surface);
+    border-bottom: 1px solid var(--border); box-shadow: var(--shadow-md);
+  }
+  header.nav-open nav a { padding: 13px 0; font-size: 16px; color: var(--text-main); border-bottom: 1px solid var(--border); }
+  header.nav-open nav a:last-of-type { border-bottom: 0; }
+  header.nav-open .nav-indicator { display: none; }
+}
 @media (max-width: 640px) {
   .top-bar { padding: 6px 16px; justify-content: center; }
   .top-bar > div:last-child, .brand-sub { display: none; }
@@ -1891,7 +1911,7 @@ header { view-transition-name: site-header; }
   .has-journey main > .hero,
   .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { background-color: rgba(243, 246, 244, 0.78); }
   .has-journey main > section.band-sage { background-color: rgba(225, 236, 230, 0.78); }
-  .has-journey main > section.band-navy { background-color: rgba(26, 47, 59, 0.82); }
+  .has-journey main > section.band-navy { background-color: rgba(26, 47, 59, 0.92); }
   .has-journey main > section:not(.band-sage):not(.band-navy):not(.hero) { padding-top: 32px; padding-bottom: 32px; }
 }
 
