@@ -152,6 +152,15 @@ header {
   letter-spacing: 0.04em;
 }
 
+/* Enlace para saltar al contenido: oculto hasta que el teclado lo enfoca */
+.skip-link {
+  position: absolute; left: 16px; top: -100px; z-index: 100;
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  background: var(--surface); color: var(--text-main);
+  font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: var(--shadow-md);
+}
+.skip-link:focus, .skip-link:focus-visible { top: 12px; outline: 2px solid var(--primary); outline-offset: 2px; }
+
 nav {
   position: relative;
   display: flex;
