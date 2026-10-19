@@ -5,7 +5,7 @@
  */
 
 // Recibe las solicitudes del sitio web y las guarda en la hoja "Solicitudes".
-// Los avisos por correo se configuran en la hoja: Herramientas → Reglas de notificación.
+// Cada solicitud nueva manda un aviso por correo a NOTIFY_EMAIL (ver notify_).
 const SHEET_NAME = 'Solicitudes';
 const COLUMNS = ['fecha', 'origen', 'servicio', 'volumen', 'modalidad', 'nombre', 'empresa',
                  'correo', 'telefono', 'mensaje', 'pagina', 'estado', 'proxima_accion'];
@@ -13,6 +13,7 @@ const MAX_LEN = 1000;
 const MAX_PER_WINDOW = 30;   // solicitudes aceptadas por ventana, entre todos los visitantes
 const WINDOW_SECONDS = 600;  // ventana de 10 minutos (la cuenta se renueva con cada solicitud nueva)
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const NOTIFY_EMAIL = 'saimontovar2@gmail.com'; // destinatario del aviso por cada solicitud nueva
 
 // Ejecutar una vez desde el editor (botón ▶ con "setup" seleccionado) para preparar la hoja.
 function setup() {
@@ -50,11 +51,27 @@ function doPost(e) {
       return clean_(p[c]);
     });
     getSheet_().appendRow(row);
+    notify_(row);
   } finally {
     lock.releaseLock();
   }
 
   return ContentService.createTextOutput('ok');
+}
+
+// Prueba del aviso por correo: ejecutar desde el editor (▶ con "probarAviso" seleccionado) y aceptar los permisos.
+function probarAviso() {
+  MailApp.sendEmail(NOTIFY_EMAIL, 'Prueba de aviso: C.H. Pray', 'Si lees esto, el aviso por correo de la web funciona.');
+}
+
+// Aviso por correo. Si falla (cuota de Gmail, permisos), la solicitud ya quedó en la hoja: no se pierde.
+function notify_(row) {
+  try {
+    const datos = COLUMNS.map((c, i) => c + ': ' + (row[i] instanceof Date ? row[i].toLocaleString('es-CO') : row[i])).join('\n');
+    MailApp.sendEmail(NOTIFY_EMAIL, 'Nueva solicitud web: ' + row[2] + ' (' + row[5] + ')', datos);
+  } catch (err) {
+    console.error('No se pudo enviar el aviso: ' + err);
+  }
 }
 
 function getSheet_() {
