@@ -402,6 +402,9 @@ function showWizardStep(id) {
   swapStep(document.getElementById(id), id === 'step-3' ? -1 : 1);
 }
 
+// El formulario de contacto guarda el nombre del servicio, igual que el cotizador (la hoja no mezcla códigos)
+const NOMBRE_SERVICIO = { hospitalario: 'Hospitalario', corporativo: 'Corporativo', asados: 'Evento', vacio: 'Proteínas', auditoria: 'Visita a la planta' };
+
 async function handleDirectContact(e) {
   e.preventDefault();
   if (!validateFields(['dirName', 'dirCompany', 'dirEmail', 'dirPhone'])) return;
@@ -409,7 +412,7 @@ async function handleDirectContact(e) {
   const data = {
     hp_control: document.getElementById('dirHp').value, // campo trampa: el servidor descarta el envío si viene lleno
     origen: 'Formulario de contacto',
-    servicio: val('dirService'),
+    servicio: NOMBRE_SERVICIO[val('dirService')] || val('dirService'),
     nombre: val('dirName'),
     empresa: val('dirCompany'),
     correo: val('dirEmail'),
