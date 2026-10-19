@@ -51,14 +51,14 @@ function calculateSavings(kg) {
 
 // 3. MODAL DE COTIZACIÓN
 // El botón que abre el cotizador decide la línea; si no la dice, manda la de la página (<body data-service>)
-const SERVICE_BY_TYPE = { clinico: 'Hospitalario', corporativo: 'Corporativo', evento: 'Evento', vacio: 'Proteínas', 'vacío': 'Proteínas', muestra_carne: 'Proteínas' };
+const SERVICE_BY_TYPE = { clinico: 'Hospitalario', corporativo: 'Corporativo', evento: 'Evento', vacio: 'Proteínas', 'vacío': 'Proteínas', muestra_carne: 'Proteínas', muestra_corporativo: 'Corporativo' };
 
 function openQuoteModal(initialType) {
   const modal = document.getElementById('quoteModal');
   const service = SERVICE_BY_TYPE[initialType] || document.body.dataset.service;
   const card = service && document.querySelector(`#step-1 .selectable-card[onclick*="'${service}'"]`);
   if (card) selectService(card, service);
-  if (initialType === 'degustacion' || initialType === 'muestra_carne') document.getElementById('quoteFrequency').value = 'muestra';
+  if (initialType === 'degustacion' || initialType === 'muestra_carne' || initialType === 'muestra_corporativo') document.getElementById('quoteFrequency').value = 'muestra';
   modal.classList.add('active');
   goToStep(1, false);
   // Diálogo modal: lo de atrás queda inerte (no se tabula ni se lee) y el foco entra a la ventana

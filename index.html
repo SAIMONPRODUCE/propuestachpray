@@ -84,7 +84,6 @@
 
     <nav>
       <a href="#soluciones">Portafolio</a>
-      <a href="#vacío">Proteínas al vacío</a>
       <a href="#inocuidad">Inocuidad y BPM</a>
       <a href="#contacto">Contacto y sede</a>
       <a href="guias/">Guías</a>
@@ -249,7 +248,7 @@
             </ul>
             <div style="display: flex; gap: 12px;">
               <button class="btn btn-primary" onclick="openQuoteModal('corporativo')">Solicitar cotización</button>
-              <button class="btn btn-secondary" onclick="openQuoteModal('evento')">Solicitar cotización</button>
+              <button class="btn btn-secondary" onclick="openQuoteModal('muestra_corporativo')">Pedir muestra</button>
             </div>
             <a href="catering-corporativo/" style="display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--primary-text); text-underline-offset: 3px;">Ver modalidades, proceso y preguntas frecuentes del catering corporativo →</a>
           </div>
@@ -293,10 +292,9 @@
               </li>
             </ul>
             <div style="display: flex; gap: 12px;">
-              <a href="#vacío" class="btn btn-primary">Ver catálogo completo y simulador</a>
+              <a href="proteinas-al-vacio/" class="btn btn-primary">Ver catálogo y simulador</a>
               <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir muestra</button>
             </div>
-            <a href="proteinas-al-vacio/" style="display: inline-block; margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--primary-text); text-underline-offset: 3px;">Ver catálogo, proceso y preguntas frecuentes de proteínas al vacío →</a>
           </div>
 
           <div class="panel-display-card">
@@ -311,99 +309,6 @@
             <div style="background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px;">
               <strong style="color: var(--primary-text);">Entrega en frío:</strong> Despacho programado con registro de temperatura en transporte.
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- APARTADO ESPECÍFICO 1: PROTEÍNAS AL VACÍO -->
-    <section class="proteins-section" id="vacío">
-      <div class="section-title-wrap">
-        <h2>Proteínas al vacío: porciones estandarizadas y menos merma</h2>
-        <p>Solución diseñada para chefs ejecutivos y jefes de compras que buscan controlar sus costos por porción y eliminar la mano de obra improductiva en cocina.</p>
-      </div>
-
-      <div class="proteins-grid">
-        <!-- Catálogo de Cortes -->
-        <div class="catalog-card">
-          <h3 style="font-size: 20px; margin-bottom: 6px;">Catálogo mayorista de cortes seleccionados</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Cortes limpios, sin tendones ni grasa excesiva, empacados en bolsas de alto vacío. <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
-          </p>
-
-          <table class="catalog-table">
-            <thead>
-              <tr>
-                <th>Corte</th>
-                <th>Gramajes estandarizados</th>
-                <th>Vida útil</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Lomo fino de res</strong></td>
-                <td>180g / 220g / 250g</td>
-                <td>21 días (0-4°C)</td>
-              </tr>
-              <tr>
-                <td><strong>Punta de anca madurada</strong></td>
-                <td>200g / 250g / 300g</td>
-                <td>28 días (0-4°C)</td>
-              </tr>
-              <tr>
-                <td><strong>Pechuga de pollo limpia</strong></td>
-                <td>160g / 200g / 220g</td>
-                <td>14 días (0-4°C)</td>
-              </tr>
-              <tr>
-                <td><strong>Bondiola / lomo cerdo</strong></td>
-                <td>180g / 220g</td>
-                <td>21 días (0-4°C)</td>
-              </tr>
-              <tr>
-                <td><strong>Carne para hamburguesa</strong></td>
-                <td>150g / 180g (Blend artesanal)</td>
-                <td>Conge: 90 días</td>
-              </tr>
-            </tbody>
-          </table>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">Vida útil de referencia; se confirma en la ficha técnica de cada lote.</p> <!-- TODO: confirmar con documento de la empresa (Fase 0) -->
-
-          <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button class="btn btn-primary" style="flex: 1;" onclick="openQuoteModal('vacío')">Solicitar cotización</button>
-            <button class="btn btn-secondary" onclick="openQuoteModal('muestra_carne')">Pedir muestra</button>
-          </div>
-        </div>
-
-        <!-- Calculadora de Rendimiento y Ahorro -->
-        <div class="calc-box">
-          <h3 style="font-size: 20px; margin-bottom: 6px;">Simulador de ahorro y reducción de merma</h3>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
-            Compare el costo oculto de procesar carne en su cocina versus recibir la porción lista para la plancha:
-          </p>
-
-          <div class="calc-slider-wrap">
-            <label for="kgSlider">
-              <span>Consumo semanal de proteína:</span>
-              <span id="kgLabel" style="color: var(--primary-text); font-size: 16px;">80 kg</span>
-            </label>
-            <input type="range" min="20" max="400" step="10" value="80" class="calc-slider" id="kgSlider" oninput="calculateSavings(this.value)">
-          </div>
-
-          <div class="calc-results">
-            <div class="calc-metric">
-              <div class="calc-metric-num" id="mermaKg">12.0 kg</div>
-              <div class="calc-metric-lbl">Merma estimada ahorrada / semana</div>
-            </div>
-            <div class="calc-metric">
-              <div class="calc-metric-num" id="horasAhorro">16 h</div>
-              <div class="calc-metric-lbl">Horas de mise en place liberadas</div>
-            </div>
-          </div>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">Estimación ilustrativa: supone 15% de merma y 0,2 h de preparación por kg. El ahorro real depende de su operación.</p>
-
-          <div style="margin-top: 20px; padding: 14px; background: var(--surface-subtle); border-radius: 8px; font-size: 13px; line-height: 1.5;">
-            <strong>Ventaja financiera:</strong> Al comprar porción neta exacta, el costo de cada plato en su sistema POS se acerca a la salida real del almacén y se reducen las pérdidas por sobreporcionado.
           </div>
         </div>
       </div>
@@ -769,6 +674,6 @@
   </footer>
 
   <!-- SCRIPT -->
-  <script src="app.js?v=15"></script>
+  <script src="app.js?v=16"></script>
 </body>
 </html>
