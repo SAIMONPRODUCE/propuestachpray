@@ -40,9 +40,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=35">
+  <link rel="stylesheet" href="styles.css?v=42">
 </head>
 <body class="theme-warm">
+  <script>(function(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;document.documentElement.classList.add("intro-on");var fin=function(){var e=document.getElementById("intro");if(e)e.remove();};document.addEventListener("click",fin,{once:true});setTimeout(fin,900);}catch(e){}})();</script>
+  <div class="intro" id="intro" aria-hidden="true">
+    <svg class="intro-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="logo-ring" cx="50" cy="50" r="48" fill="#0C0D0E" stroke="#8B1E1E" stroke-width="3"/>
+        <rect class="logo-rombo" x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#1F2430" stroke-width="2" fill="none"/>
+        <rect class="logo-rombo" x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#8B1E1E" stroke-width="1.5" fill="none"/>
+        <g class="logo-espiga"><path class="logo-tallo" d="M48 78 L32 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path class="logo-hoja" style="--i:1" d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:2" d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:3" d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:4" d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:5" d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#C8963E"/>
+        <path class="logo-tallo" d="M52 78 L68 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path class="logo-hoja" style="--i:6" d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:7" d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:8" d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:9" d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:10" d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#C8963E"/>
+      </g>
+      </svg>
+  </div>
   <a class="skip-link" href="#main-content">Saltar al contenido</a>
 
   <!-- BARRA DE CONFIANZA -->
@@ -59,22 +80,23 @@
   <!-- HEADER -->
   <header>
     <a href="#" class="brand-wrap">
-      <svg class="brand-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="48" fill="#0C0D0E" stroke="#8B1E1E" stroke-width="3"/>
-        <rect x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#1F2430" stroke-width="2" fill="none"/>
-        <rect x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#8B1E1E" stroke-width="1.5" fill="none"/>
-        <path d="M48 78 L32 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
-        <path d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#C8963E"/>
-        <path d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#C8963E"/>
-        <path d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#C8963E"/>
-        <path d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#C8963E"/>
-        <path d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#C8963E"/>
-        <path d="M52 78 L68 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
-        <path d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#C8963E"/>
-        <path d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#C8963E"/>
-        <path d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#C8963E"/>
-        <path d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#C8963E"/>
-        <path d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#C8963E"/>
+      <svg class="brand-logo-svg logo-anim" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="logo-ring" cx="50" cy="50" r="48" fill="#0C0D0E" stroke="#8B1E1E" stroke-width="3"/>
+        <rect class="logo-rombo" x="25" y="25" width="50" height="50" transform="rotate(45 50 50)" stroke="#1F2430" stroke-width="2" fill="none"/>
+        <rect class="logo-rombo" x="28" y="28" width="44" height="44" transform="rotate(45 50 50)" stroke="#8B1E1E" stroke-width="1.5" fill="none"/>
+        <g class="logo-espiga"><path class="logo-tallo" d="M48 78 L32 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path class="logo-hoja" style="--i:1" d="M32 40 C30 35 24 33 24 33 C24 33 26 39 30 42 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:2" d="M34 44 C31 41 27 41 27 41 C27 41 29 45 33 46 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:3" d="M36 49 C33 46 29 46 29 46 C29 46 31 50 35 51 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:4" d="M33 41 C36 38 40 38 40 38 C40 38 38 42 34 43 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:5" d="M35 46 C38 43 42 43 42 43 C42 43 40 47 36 48 Z" fill="#C8963E"/>
+        <path class="logo-tallo" d="M52 78 L68 40" stroke="#C8963E" stroke-width="2" stroke-linecap="round"/>
+        <path class="logo-hoja" style="--i:6" d="M68 40 C70 35 76 33 76 33 C76 33 74 39 70 42 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:7" d="M66 44 C69 41 73 41 73 41 C73 41 71 45 67 46 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:8" d="M64 49 C67 46 71 46 71 46 C71 46 69 50 65 51 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:9" d="M67 41 C64 38 60 38 60 38 C60 38 62 42 66 43 Z" fill="#C8963E"/>
+        <path class="logo-hoja" style="--i:10" d="M65 46 C62 43 58 43 58 43 C58 43 60 47 64 48 Z" fill="#C8963E"/>
+      </g>
       </svg>
       <div>
         <span class="brand-title">C.H. PRAY</span>
@@ -135,30 +157,42 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="hero-card-header">
-          <span class="dot-badge">Planta operativa activa</span>
-          <span class="badge-gold-outline">Trazabilidad por lote</span>
-        </div>
-        <div class="info-row">
-          <span>Razón social unificada</span>
-          <span>Catering C.H. Pray S.A.S.</span>
-        </div>
-        <div class="info-row">
-          <span>Control de temperatura</span>
-          <span style="color: #047857;">Caliente &gt; 65°C / cadena &lt; 4°C</span>
-        </div>
-        <div class="info-row">
-          <span>Rotulado individual</span>
-          <span>Cama, paciente, prescripción</span>
-        </div>
-        <div class="info-row">
-          <span>Ubicación planta</span>
-          <span>Cra. 24D #3-27, Bogotá</span>
-        </div>
-        <button class="btn btn-gold" style="width: 100%; margin-top: 10px;" onclick="openQuoteModal('degustacion')">
-          Pedir degustación
-        </button>
+      <div class="hero-card hero-bandeja">
+        <figure class="tray-figure tray-hero" id="trayFigure">
+          <svg class="bandeja-svg" viewBox="0 -30 360 280" role="img" aria-label="Ilustración de una bandeja hospitalaria con plato, sopa y vaso de jugo">
+            <rect x="14" y="20" width="332" height="206" rx="24" fill="#FFFFFF" stroke="#1A2F3B" stroke-width="2"/>
+            <rect x="28" y="34" width="304" height="178" rx="16" fill="#EEF3EF" stroke="#CBD8D1" stroke-width="1.5"/>
+            <rect x="44" y="74" width="7" height="92" rx="3.5" fill="#D7E0E3" stroke="#1A2F3B" stroke-width="1.3"/>
+            <rect x="56" y="74" width="7" height="92" rx="3.5" fill="#D7E0E3" stroke="#1A2F3B" stroke-width="1.3"/>
+            <circle cx="128" cy="122" r="62" fill="#FFFFFF" stroke="#1A2F3B" stroke-width="1.8"/>
+            <circle cx="128" cy="122" r="48" fill="#F8FBFA" stroke="#DDE5E0" stroke-width="1.5"/>
+            <ellipse cx="114" cy="116" rx="26" ry="18" fill="#B5694A" stroke="#1A2F3B" stroke-width="1.5"/>
+            <circle cx="152" cy="140" r="16" fill="#F7F3E8" stroke="#1A2F3B" stroke-width="1.5"/>
+            <ellipse cx="108" cy="146" rx="13" ry="7" fill="#7CC08A" stroke="#1A2F3B" stroke-width="1.3"/>
+            <circle cx="146" cy="104" r="7" fill="#F29A4A" stroke="#1A2F3B" stroke-width="1.3"/>
+            <circle cx="158" cy="112" r="6" fill="#F29A4A" stroke="#1A2F3B" stroke-width="1.3"/>
+            <circle cx="262" cy="86" r="38" fill="#FFFFFF" stroke="#1A2F3B" stroke-width="1.8"/>
+            <circle cx="262" cy="86" r="29" fill="#F2C46B" stroke="#1A2F3B" stroke-width="1.5"/>
+            <circle cx="296" cy="152" r="21" fill="#E8EEF0" stroke="#1A2F3B" stroke-width="1.8"/>
+            <circle cx="296" cy="152" r="15" fill="#F29A4A" stroke="#1A2F3B" stroke-width="1.3"/>
+            <g class="vapor" aria-hidden="true">
+              <path d="M248 40 C242 30 254 22 248 10 C242 0 254 -8 248 -18"/>
+              <path d="M262 36 C256 26 268 18 262 6 C256 -4 268 -12 262 -22"/>
+              <path d="M276 40 C270 30 282 22 276 10 C270 0 282 -8 276 -18"/>
+            </g>
+          </svg>
+          <div class="tray-label" role="group" aria-label="Ejemplo de rótulo de bandeja">
+            <div class="tray-label-title">Rótulo de bandeja</div>
+            <dl>
+              <div class="tray-row"><dt>Cama</dt><dd><span>204-B</span></dd></div>
+              <div class="tray-row"><dt>Paciente</dt><dd><span>Alexander Tovar</span></dd></div>
+              <div class="tray-row"><dt>Dieta</dt><dd><span>Hiposódica estricta</span></dd></div>
+              <div class="tray-row"><dt>Preparada</dt><dd><span>11:40 a.&nbsp;m.</span></dd></div>
+            </dl>
+            <div class="tray-label-note">Datos de ejemplo</div>
+          </div>
+        </figure>
+        <p class="hero-card-nota">Cada bandeja sale rotulada. Caliente por encima de 65&nbsp;°C y frío por debajo de 4&nbsp;°C, hasta la recepción en su institución.</p>
       </div>
     </section>
 
@@ -319,6 +353,28 @@
       <div class="section-title-wrap">
         <h2>Rigor sanitario y protocolos verificables</h2>
         <p>Documentación técnica y operativa lista para comités de compras y auditorías de salud.</p>
+      </div>
+
+      <div class="thermo-band">
+        <div class="thermo-wrap">
+          <div class="thermo-pair" id="thermoPair" role="img" aria-label="Termómetros en escala de 0 a 100 grados: lo caliente se mantiene por encima de 65 grados y lo frío por debajo de 4 grados">
+            <div class="thermo thermo-hot" data-level="65">
+              <div class="thermo-tube"><div class="thermo-fill"></div><span class="thermo-mark"></span></div>
+              <div class="thermo-bulb"></div>
+              <div class="thermo-read"><strong><span class="thermo-num">65</span>&nbsp;°C</strong><span>Caliente, mínimo</span></div>
+            </div>
+            <div class="thermo thermo-cold" data-level="4">
+              <div class="thermo-tube"><div class="thermo-fill"></div><span class="thermo-mark"></span></div>
+              <div class="thermo-bulb"></div>
+              <div class="thermo-read"><strong><span class="thermo-num">4</span>&nbsp;°C</strong><span>Frío, máximo</span></div>
+            </div>
+          </div>
+          <p class="thermo-note">Escala de 0 a 100&nbsp;°C. La línea marca el límite de cada rango.</p>
+        </div>
+        <div class="thermo-copy">
+          <h3>La temperatura se controla hasta la entrega</h3>
+          <p>Cajas isotérmicas de grado alimenticio y termómetros calibrados mantienen caliente lo caliente y frío lo frío, con registro de temperatura en la recepción.</p>
+        </div>
       </div>
 
       <div class="matrix-grid matrix-grid--feature">
